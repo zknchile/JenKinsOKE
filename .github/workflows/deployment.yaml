@@ -1,0 +1,77 @@
+name: deploy demo app
+
+on:
+  push:
+    branches:
+      - master
+
+env:
+  OCI_CLI_USER: ${{ secrets.OCI_CLI_USER }}
+  OCI_CLI_TENANCY: ${{ secrets.OCI_CLI_TENANCY }}
+  OCI_CLI_FINGERPRINT: ${{ secrets.OCI_CLI_FINGERPRINT }}
+  OCI_CLI_KEY_CONTENT: ${{ secrets.OCI_CLI_KEY_CONTENT }}
+  OCI_CLI_REGION: ${{ secrets.OCI_CLI_REGION }}
+
+jobs:
+
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v2
+      
+      - name: Get Access to OCIR
+        id: get-ocir
+        uses: oracle-actions/get-ocir-repository@v1.0
+        with:
+          name: ${{ secrets.OCI_DOCKER_REPO }}
+          compartment: ${{ secrets.OCI_COMPARTMENT_OCID }}
+      
+      - name: Log Into OCIR
+        uses: oracle-actions/login-ocir@v1.0
+        id: login-ocir
+        with:
+          auth_token: ${{ secrets.OCI_AUTH_TOKEN }}
+      
+      - name: Docker Build
+        id: docker-build
+        run: |
+          docker build -t ${{ secrets.OCI_DOCKER_REPO }}:${{ github.sha }} .
+      
+      - name: Docker Push
+        id: docker-push
+        run: |
+          docker push ${{ secrets.OCI_DOCKER_REPO }}:${{ github.sha }}
+      
+      - name: Upload Chart 
+        uses: actions/upload-artifact@master
+        with:
+          name: app-chart-${{ github.sha }}
+          path: chart/
+  
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+
+      - name: Download Chart
+        uses: actions/download-artifact@master
+        with:
+          name: app-chart-${{ github.sha }}
+          path: chart/
+
+      - name: Configure Kubectl
+        uses: oracle-actions/configure-kubectl-oke@v1.0
+        id: kubectl-oke-action
+        with:
+          cluster: ${{ secrets.OKE_CLUSTER_OCID }}
+      
+      - name: Helm Deploy
+        id: helm-deploy
+        run: |
+          helm upgrade \
+            demo chart/ \
+            --install --wait \
+            --values chart/demo.yaml \
+            --set image.tag=${{ github.sha }} \
+            --namespace demo
