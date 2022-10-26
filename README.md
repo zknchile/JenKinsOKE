@@ -70,8 +70,11 @@ La finalidad de este demo es configurar Github Actions para realizar deploymente
 	```
 	$ echo "XXXXXX" > .oci/token
 	```
+7. Crear registry en OCI
+	Menu -> Developer Services -> Container Registry -> Create Repository
+	![quickCrate](img/registry.PNG)
 
-7. Clonar el repo y configurar los secrets
+8. Clonar el repo y configurar los secrets
 	Github > Project > Setings > Secrets > Actions
 	![secret](img/secrets.PNG)
 	```
@@ -86,16 +89,16 @@ La finalidad de este demo es configurar Github Actions para realizar deploymente
 		OKE_CLUSTER_OCID				Developer > OKE > $OKE_NAME > ocid1.cluster.oc1.
 	```
 
-8. Crear namespace
+9. Crear namespace
 	```
 	kubectl create namespace $NAMESPACE
 	```
 	
-9. Crear Secret de tipo docker-registry para el namespace
+10. Crear Secret de tipo docker-registry para el namespace
 	```
 	kubectl create secret docker-registry ocirsecret --docker-server=iad.ocir.io --docker-username='<Tenancy name>/<username>' --docker-password='<user auth token>' -n demo
 	```
 
-10. Realizar un cambio en nuestro repositorio y esperar que el deploy se realice de forma automática 
+11. Realizar un cambio en nuestro repositorio y esperar que el deploy se realice de forma automática 
 
 May the force be with you!
