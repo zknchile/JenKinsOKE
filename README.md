@@ -105,16 +105,22 @@ La finalidad de este demo es configurar Github Actions para realizar deploymente
 	```
 	
 10. Crear Secret de tipo docker-registry para el namespace
+	Para conocer el identificador del registry (XXX.ocir.io) visitar https://docs.oracle.com/en-us/iaas/Content/General/Concepts/regions.htm y buscar el key de la región en la que uno se encuentra ej: Sao Paulo gru, Chile scl, Ashbur iad
 	```
-	$ kubectl create secret docker-registry ocirsecret --docker-server=iad.ocir.io --docker-username='<Tenancy name>/<username>' --docker-password='<user auth token>' -n demo
+	$ kubectl create secret docker-registry ocirsecret --docker-server=XXX.ocir.io --docker-username='<Tenancy name>/<username>' --docker-password='<user auth token>' -n demo
 	```
 
-11. Realizar un cambio en nuestro repositorio y esperar que el deploy se realice de forma automática 
+11. Realizar un cambio en nuestro repositorio y esperar que el deploy se realice de forma automática:
+	Editar la línea 8 del arhivo githubaction-OKE/chart/demo.yaml y cambiar   **repository: iad.ocir.io/id5lady22ken/demo** por XXX.ocir.io/REGISTRY_NAMESPACE/demo y ver que ocurre
 
 May the force be with you!
 
 12. Validar
+	Listar servicios
 	```
 	$ kubectl get services -n demo
+	NAME         TYPE           CLUSTER-IP      EXTERNAL-IP     PORT(S)        AGE
+	demo-chart   LoadBalancer   10.96.157.236   152.70.195.24   80:31088/TCP   6m42s
 	```
+	Copiar la IP externa en un navegador y enter...
 14. ads
