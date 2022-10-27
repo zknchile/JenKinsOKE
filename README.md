@@ -29,34 +29,42 @@ La finalidad de este demo es configurar Github Actions para realizar deploymente
 	![quickCrate](img/createOKE.PNG)
 
 2. Una vez que finalice el proceso, crear kubeconfig
+	Acces Cluster -> Cloud Shell Access -> Launch Cloud Shell y copiar el comando, similar a
     ```
     $ oci ce cluster create-kubeconfig --cluster-id <cluster ocid> --file $HOME/.kube/config --region us-ashburn-1 --token-version 2.0.0  --kube-endpoint PUBLIC_ENDPOINT
     ```
+    ![quickCrate](img/cloudshell.PNG)
+    
 3. Crear OCI Setup Configurar
 	```
 	Crear config 
 	oci setup config
 		Definir:
 			- Path donde quedará la configuración ~/.oci/NOMBREARCHIVO
-			- User OCID
-			- Tenancy OCID
-			- Region (en mi caso us-ashburn-1)
-			- Y para q fgenere las llaves
-			- Validar el directorio donde se crearán
-			- Validar el nombre de las llaves
+			- User OCID		Profile -> oracleidentitycloudservice/XXXXX -> OCID -> Copy
+			- Tenancy OCID		Profile -> Tenancy:XXXXX -> OCID -> Copy
+			- Region 		
+			- Para el resto de los campos dejar las opciones pro default 
 	```
 3.1 Para validar, hacer cat al archivo de configuración 
 	```
 	$ cat ~/.oci/NOMBREARCHIVO
+		[DEFAULT]
+		user=ocid1.user.oc1..XXXXXXX
+		fingerprint=XX:XX:XX:XX:XX:XX:XX:XX:XX:XX:XX
+		key_file=/home/XXXX/.oci/oci_api_key.pem
+		tenancy=ocid1.tenancy.oc1..XXXXXXXX
+		region=XX-XXXXX-X
 	```
 	
 4. Crear API Key (permite conectar a kubernetes y realizar el despliegue mediante Helm)
+	Menu -> Identity & Security -> User -> User Details -> API Key -> Add API Key -> Past Public Key -> Add
 	![apikey](img/userAPIKeys.PNG)
-	Menu -> Identity & Security -> User -> User Details -> Add API Key
 	```
 		Pegar la public Key
 			$ cat .oci/oci_api_key_public.pem
 	```
+	![apikey](img/addAPIKeys.PNG)
 
 4.2 El fingerprint que se crea debe ser el mismo q está en ~/.oci/NOMBREARCHIVO
 	```
@@ -66,7 +74,7 @@ La finalidad de este demo es configurar Github Actions para realizar deploymente
 6. Crear Token (Nos permitirá conectarnos con el OCI Registry)
 	Menu -> Identity & Security -> User -> User Details -> Auth Tokens -> Generate Token
 	![token](img/auth.PNG)
-	Se puede guardar dentro de un archivo 
+	Se puede guardar dentro de un archivo llamado token
 	```
 	$ echo "XXXXXX" > .oci/token
 	```
@@ -79,19 +87,19 @@ La finalidad de este demo es configurar Github Actions para realizar deploymente
 	![secret](img/secrets.PNG)
 	```
 		OCI_AUTH_TOKEN					cat ~/.oci/token
-		OCI_CLI_FINGERPRINT				cat ~/.oci/deployer		fingerprint=d1:e2:  			
-		OCI_CLI_KEY_CONTENT				cat ~/.oci/oci_api_key.pem. Estio se puede validar desde cat ~/.oci/NOMBREARCHIVO   key_file=/home/felipe_bas/.oci/oci_api_key.pem
-		OCI_CLI_REGION					cat ~/.oci/deployer		region=us-ashburn-1
-		OCI_CLI_TENANCY					cat ~/.oci/deployer		tenancy=ocid1.tenancy.oc1.
-		OCI_CLI_USER					cat ~/.oci/deployer		user=ocid1.user.oc1.
-		OCI_COMPARTMENT_OCID			Identity > Compartment > $COMPARTMENT_NAME > ocid1.compartment.oc1.
-		OCI_DOCKER_REPO					$OCI_REGISTRY
-		OKE_CLUSTER_OCID				Developer > OKE > $OKE_NAME > ocid1.cluster.oc1.
+		OCI_CLI_FINGERPRINT				cat ~/.oci/NOMBREARCHIVO		fingerprint=d1:e2:  			
+		OCI_CLI_KEY_CONTENT				cat ~/.oci/oci_api_key.pem 		Esto se puede validar desde cat ~/.oci/NOMBREARCHIVO   key_file=/home/felipe_bas/.oci/oci_api_key.pem
+		OCI_CLI_REGION					cat ~/.oci/NOMBREARCHIVO		region=us-ashburn-1
+		OCI_CLI_TENANCY					cat ~/.oci/NOMBREARCHIVO		tenancy=ocid1.tenancy.oc1.
+		OCI_CLI_USER					cat ~/.oci/NOMBREARCHIVO		user=ocid1.user.oc1.
+		OCI_COMPARTMENT_OCID				Identity & Security > Compartment > $COMPARTMENT_NAME > ocid1.compartment.oc1.
+		OCI_DOCKER_REPO					id5lady22ken/oracleidentitycloudservice/patricio.valenzuela@oracle.com/demo
+		OKE_CLUSTER_OCID				Developer Services > OKE > $OKE_NAME > ocid1.cluster.oc1.
 	```
 
 9. Crear namespace
 	```
-	kubectl create namespace $NAMESPACE
+	$ kubectl create namespace demo
 	```
 	
 10. Crear Secret de tipo docker-registry para el namespace
