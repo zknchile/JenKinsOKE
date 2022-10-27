@@ -93,7 +93,8 @@ La finalidad de este demo es configurar Github Actions para realizar deploymente
 		OCI_CLI_TENANCY					cat ~/.oci/NOMBREARCHIVO		tenancy=ocid1.tenancy.oc1.
 		OCI_CLI_USER					cat ~/.oci/NOMBREARCHIVO		user=ocid1.user.oc1.
 		OCI_COMPARTMENT_OCID				Identity & Security > Compartment > $COMPARTMENT_NAME > ocid1.compartment.oc1.
-		OCI_DOCKER_REPO					id5lady22ken/oracleidentitycloudservice/patricio.valenzuela@oracle.com/demo
+		OCI_DOCKER_REPO					iad.ocir.io/XXXXXX/demo XXXX es en namespace del regustry
+									Developer Services > OKE > Container Registry > demo > Namespace 
 		OKE_CLUSTER_OCID				Developer Services > OKE > $OKE_NAME > ocid1.cluster.oc1.
 	```
 
