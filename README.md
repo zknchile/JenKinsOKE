@@ -33,7 +33,7 @@ La finalidad de este demo es configurar Github Actions para realizar deploymente
     ```
     $ oci ce cluster create-kubeconfig --cluster-id <cluster ocid> --file $HOME/.kube/config --region us-ashburn-1 --token-version 2.0.0  --kube-endpoint PUBLIC_ENDPOINT
     ```
-    ![quickCrate](img/cloudshell.PNG)
+    ![cloudShell](img/cloudshell.PNG)
     
 3. Crear OCI Setup Configurar
 	```
@@ -80,7 +80,7 @@ La finalidad de este demo es configurar Github Actions para realizar deploymente
 	```
 7. Crear registry en OCI
 	Menu -> Developer Services -> Container Registry -> Create Repository
-	![quickCrate](img/registry.PNG)
+	![registry](img/registry.PNG)
 
 8. Clonar el repo y configurar los secrets
 	Github > Project > Setings > Secrets > Actions
@@ -93,10 +93,11 @@ La finalidad de este demo es configurar Github Actions para realizar deploymente
 		OCI_CLI_TENANCY					cat ~/.oci/NOMBREARCHIVO		tenancy=ocid1.tenancy.oc1.
 		OCI_CLI_USER					cat ~/.oci/NOMBREARCHIVO		user=ocid1.user.oc1.
 		OCI_COMPARTMENT_OCID				Identity & Security > Compartment > $COMPARTMENT_NAME > ocid1.compartment.oc1.
-		OCI_DOCKER_REPO					iad.ocir.io/XXXXXX/demo XXXX es en namespace del regustry
+		OCI_DOCKER_REPO					iad.ocir.io/XXXXXX/demo XXXX es en namespace del registry
 									Developer Services > OKE > Container Registry > demo > Namespace 
 		OKE_CLUSTER_OCID				Developer Services > OKE > $OKE_NAME > ocid1.cluster.oc1.
 	```
+	![namespace](img/namespaceRegistry.PNG)
 
 9. Crear namespace
 	```
@@ -105,9 +106,15 @@ La finalidad de este demo es configurar Github Actions para realizar deploymente
 	
 10. Crear Secret de tipo docker-registry para el namespace
 	```
-	kubectl create secret docker-registry ocirsecret --docker-server=iad.ocir.io --docker-username='<Tenancy name>/<username>' --docker-password='<user auth token>' -n demo
+	$ kubectl create secret docker-registry ocirsecret --docker-server=iad.ocir.io --docker-username='<Tenancy name>/<username>' --docker-password='<user auth token>' -n demo
 	```
 
 11. Realizar un cambio en nuestro repositorio y esperar que el deploy se realice de forma automática 
 
 May the force be with you!
+
+12. Validar
+	```
+	$ kubectl get services -n demo
+	```
+14. ads
