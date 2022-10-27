@@ -120,7 +120,11 @@ May the force be with you!
 	```
 	$ kubectl get services -n demo
 	NAME         TYPE           CLUSTER-IP      EXTERNAL-IP     PORT(S)        AGE
-	demo-chart   LoadBalancer   10.96.157.236   152.70.195.24   80:31088/TCP   6m42s
+	demo-chart   LoadBalancer   10.96.141.165   129.80.131.252   80:30367/TCP   70s
 	```
 	Copiar la IP externa en un navegador y enter...
-14. ads
+
+14. Editar la línea 10 del archivo main.py por otro mensaje, nada puede malir sal
+	```
+	    return {"Hola, ¿cómo estás?"}
+	```
