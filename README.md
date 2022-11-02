@@ -53,6 +53,22 @@ La finalidad de este demo es configurar Github Actions para realizar deploymente
     ![cloudShell](img/cloudshell.PNG)
     
 3. Crear OCI Setup Configurar
+	Crear directorio .oci
+	```
+	$ mkdir ~/.oci
+	```
+	
+	Crear Llave privada y cambiar permisos
+	```
+	$ openssl genrsa -out ~/.oci/oci_api_key.pem 2048
+	$ chmod go-rwx ~/.oci/oci_api_key.pem
+	```
+	
+	Crear llave pública
+	```
+	$ openssl rsa -pubout -in ~/.oci/oci_api_key.pem -out ~/.oci/oci_api_key_public.pem
+	```
+	
 	```
 	$ oci setup config
 	```
@@ -64,7 +80,8 @@ La finalidad de este demo es configurar Github Actions para realizar deploymente
 	- User OCID								Profile -> oracleidentitycloudservice/XXXXX -> OCID -> Copy
 	- Tenancy OCID								Profile -> Tenancy:XXXXX -> OCID -> Copy
 	- Region 								Seleccionar la región desde las alternativas en base a la que corresponde a cada uno, esquina superior derecha		
-	- Para el resto de los campos dejar las opciones por default 
+	- Do you want to generate a new API Signing RSA key pair? (If you decline you will be asked to supply the path to an existing key.) [Y/n]: **n Decir que no se quiere crear una llave ssh, ya se creó en el paso anterior**
+	- Enter the location of your API Signing private key file: 		~/.oci/oci_api_key.pem
 	```
 3.1 Para validar, hacer cat al archivo de configuración **Los siguientes datos son un ejemplo** 
 	```
@@ -127,7 +144,7 @@ La finalidad de este demo es configurar Github Actions para realizar deploymente
 	OCI_CLI_TENANCY					cat ~/.oci/config		tenancy=ocid1.tenancy.oc1.
 	OCI_CLI_USER					cat ~/.oci/config		user=ocid1.user.oc1.
 	OCI_COMPARTMENT_OCID				Identity & Security > Compartment > $COMPARTMENT_NAME > ocid1.compartment.oc1.
-	OCI_DOCKER_REPO					XXX.ocir.io/XXXXXX/demo      done XXX.ocir.io es el key de la región (ej: gru.ocir.io) y XXXX es en namespace del registry, cat ~/.oci/namespaceRegistry
+	OCI_DOCKER_REPO					XXX.ocir.io/XXXXXX/demo      done XXX.ocir.io es el key de la región (https://docs.oracle.com/en-us/iaas/Content/General/Concepts/regions.htm ej: gru.ocir.io) y XXXX es en namespace del registry, cat ~/.oci/namespaceRegistry 
 	OKE_CLUSTER_OCID				Developer Services -> OKE -> cluster1 -> ocid1.cluster.oc1 
 	```
 	![namespace](img/namespaceRegistry.PNG)
@@ -152,7 +169,7 @@ La finalidad de este demo es configurar Github Actions para realizar deploymente
 	```
 
 12. Realizar un cambio en nuestro repositorio y esperar que el deploy se realice de forma automática:
-	Editar la línea 8 del arhivo githubaction-OKE/chart/demo.yaml y cambiar   **repository: iad.ocir.io/id5lady22ken/demo** por XXX.ocir.io/REGISTRY_NAMESPACE/demo y ver que ocurre
+	Editar la línea 8 del arhivo githubaction-OKE/chart/demo.yaml y cambiar   **repository: iad.ocir.io/id5lady22ken/demo** por XXX.ocir.io/REGISTRY_NAMESPACE/demo y ver que ocurre. (Recordar que el key de la región se debe obtener aquí https://docs.oracle.com/en-us/iaas/Content/General/Concepts/regions.htm)
 
 May the force be with you!
 
