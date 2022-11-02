@@ -23,13 +23,30 @@ La finalidad de este demo es configurar Github Actions para realizar deploymente
 - Despliegue automático 
 
 ### Paso a Paso
-
-1. Crear cluster OKE - 
-	Menu -> Developer Services -> Kubernetes Clusters (OKE) -> Quick Create
+0. Crear Compartment
+	Menu -> Identity & Security -> Compartmente -> New Compartment
+	```
+	CAMPO				VALOR
+	==============================================
+	Name		 		OKE
+	Description 			OKE
+	Parent Compartment 		chileXX (root)
+	```
+	
+1. Crear cluster OKE, dentro del compartment OKE y **nombrarlo cluster1**
+	Menu -> Developer Services -> Kubernetes Clusters (OKE)
+	**IMPORTATE: validar que todo se cree en compartment OKE**
+	![compartment](img/CompartmentOKE.PNG)
+	
+	Create Cluster -> Quick Create 
 	![quickCrate](img/createOKE.PNG)
 
 2. Una vez que finalice el proceso, crear kubeconfig
-	Acces Cluster -> Cloud Shell Access -> Launch Cloud Shell y copiar el comando, similar a
+	Click en 
+	Acces Cluster -> Cloud Shell Access -> Launch Cloud Shell 
+	![accessShell](img/accessShell.PNG)
+	Copiar el comando, similar a **No es el mismo, no copiar este ejemplo**
+	![kubeConfig](img/kubeConfig.PNG)
     ```
     $ oci ce cluster create-kubeconfig --cluster-id <cluster ocid> --file $HOME/.kube/config --region us-ashburn-1 --token-version 2.0.0  --kube-endpoint PUBLIC_ENDPOINT
     ```
@@ -37,18 +54,21 @@ La finalidad de este demo es configurar Github Actions para realizar deploymente
     
 3. Crear OCI Setup Configurar
 	```
-	Crear config 
-	oci setup config
-		Definir:
-			- Path donde quedará la configuración ~/.oci/NOMBREARCHIVO
-			- User OCID		Profile -> oracleidentitycloudservice/XXXXX -> OCID -> Copy
-			- Tenancy OCID		Profile -> Tenancy:XXXXX -> OCID -> Copy
-			- Region 		
-			- Para el resto de los campos dejar las opciones pro default 
+	$ oci setup config
 	```
-3.1 Para validar, hacer cat al archivo de configuración 
+	Dentro de esta configuración se debe definir
 	```
-	$ cat ~/.oci/NOMBREARCHIVO
+	CAMPO									DONDE ENCONTRAR
+	===================================================================================
+	- Path (...config [/home/felipe_bas/.oci/config]: ) 			Donde quedará la configuración, dejar por default (~/.oci/config)
+	- User OCID								Profile -> oracleidentitycloudservice/XXXXX -> OCID -> Copy
+	- Tenancy OCID								Profile -> Tenancy:XXXXX -> OCID -> Copy
+	- Region 								Seleccionar la región desde las alternativas en base a la que corresponde a cada uno, esquina superior derecha		
+	- Para el resto de los campos dejar las opciones por default 
+	```
+3.1 Para validar, hacer cat al archivo de configuración **Los siguientes datos son un ejemplo** 
+	```
+	$ cat ~/.oci/config
 		[DEFAULT]
 		user=ocid1.user.oc1..XXXXXXX
 		fingerprint=XX:XX:XX:XX:XX:XX:XX:XX:XX:XX:XX
@@ -60,57 +80,78 @@ La finalidad de este demo es configurar Github Actions para realizar deploymente
 4. Crear API Key (permite conectar a kubernetes y realizar el despliegue mediante Helm)
 	Menu -> Identity & Security -> User -> User Details -> API Key -> Add API Key -> Past Public Key -> Add
 	![apikey](img/userAPIKeys.PNG)
+	Pegar la public Key que se creó en paso anterior, para tener esa información ejecutar el siguiente comando y copiar todo el contenido 
 	```
-		Pegar la public Key
-			$ cat .oci/oci_api_key_public.pem
+	$ cat .oci/oci_api_key_public.pem
 	```
 	![apikey](img/addAPIKeys.PNG)
 
-4.2 El fingerprint que se crea debe ser el mismo q está en ~/.oci/NOMBREARCHIVO
+4.2 El fingerprint que se crea debe ser el mismo q está en ~/.oci/config **Reemplazar XXX por el dato de cada uno**
 	```
-	$ fgrep "XXXXXX" ~/.oci/NOMBREARCHIVO
+	$ fgrep "XXXXXX" ~/.oci/config
 	```
 	
 6. Crear Token (Nos permitirá conectarnos con el OCI Registry)
 	Menu -> Identity & Security -> User -> User Details -> Auth Tokens -> Generate Token
 	![token](img/auth.PNG)
-	Se puede guardar dentro de un archivo llamado token
+	Se puede guardar dentro de un archivo llamado token, **Reemplazar XXXX por el token de cada uno**
 	```
 	$ echo "XXXXXX" > .oci/token
 	```
-7. Crear registry en OCI
+7. Crear registry en OCI y nombraro demo **Validar que se cree en compartment OKE**
 	Menu -> Developer Services -> Container Registry -> Create Repository
 	![registry](img/registry.PNG)
+	Guardar el nombre del namespace del registry para su futuro uso
+	```
+	$ echo "XXXXX" > ~/.oci/namespaceRegistry
+	```
 
-8. Clonar el repo y configurar los secrets
-	Github > Project > Setings > Secrets > Actions
+8. Crear nuevo repositorio en GitHub, nombrarlo ghithubaction-oke y dejarlo de forma pública
+	Profile -> Your Repositories -> New -> Repository Name -> Create Repository
+	
+8.1 Una vez creado el nuevo repositorio, ir a la opción "…or import code from another repository" e importar el código de la URL 
+	```
+	https://github.com/whiplash0104/githubaction-OKE.git
+	```
+	
+9. Una vez sincronizado el repositorio, configurar los secrets
+	Dentro del repositorio -> Setings -> Secrets -> Actions
 	![secret](img/secrets.PNG)
 	```
-		OCI_AUTH_TOKEN					cat ~/.oci/token
-		OCI_CLI_FINGERPRINT				cat ~/.oci/NOMBREARCHIVO		fingerprint=d1:e2:  			
-		OCI_CLI_KEY_CONTENT				cat ~/.oci/oci_api_key.pem 		Esto se puede validar desde cat ~/.oci/NOMBREARCHIVO   key_file=/home/felipe_bas/.oci/oci_api_key.pem
-		OCI_CLI_REGION					cat ~/.oci/NOMBREARCHIVO		region=us-ashburn-1
-		OCI_CLI_TENANCY					cat ~/.oci/NOMBREARCHIVO		tenancy=ocid1.tenancy.oc1.
-		OCI_CLI_USER					cat ~/.oci/NOMBREARCHIVO		user=ocid1.user.oc1.
-		OCI_COMPARTMENT_OCID				Identity & Security > Compartment > $COMPARTMENT_NAME > ocid1.compartment.oc1.
-		OCI_DOCKER_REPO					iad.ocir.io/XXXXXX/demo XXXX es en namespace del registry
-									Developer Services > OKE > Container Registry > demo > Namespace 
-		OKE_CLUSTER_OCID				Developer Services > OKE > $OKE_NAME > ocid1.cluster.oc1.
+	CAMPO						DONDE ENCONTRAR
+	========================================================================================================================
+	OCI_AUTH_TOKEN					cat ~/.oci/token
+	OCI_CLI_FINGERPRINT				cat ~/.oci/config		fingerprint= d1:e2:  			
+	OCI_CLI_KEY_CONTENT				cat ~/.oci/oci_api_key.pem 		
+	OCI_CLI_REGION					cat ~/.oci/config		region=us-ashburn-1
+	OCI_CLI_TENANCY					cat ~/.oci/config		tenancy=ocid1.tenancy.oc1.
+	OCI_CLI_USER					cat ~/.oci/config		user=ocid1.user.oc1.
+	OCI_COMPARTMENT_OCID				Identity & Security > Compartment > $COMPARTMENT_NAME > ocid1.compartment.oc1.
+	OCI_DOCKER_REPO					XXX.ocir.io/XXXXXX/demo      done XXX.ocir.io es el key de la región (ej: gru.ocir.io) y XXXX es en namespace del registry, cat ~/.oci/namespaceRegistry
+	OKE_CLUSTER_OCID				Developer Services -> OKE -> cluster1 -> ocid1.cluster.oc1 
 	```
 	![namespace](img/namespaceRegistry.PNG)
 
-9. Crear namespace
+10. Desde la consola (abierta en el punto 2) crear namespace en kubernetes
 	```
 	$ kubectl create namespace demo
 	```
 	
-10. Crear Secret de tipo docker-registry para el namespace
-	Para conocer el identificador del registry (XXX.ocir.io) visitar https://docs.oracle.com/en-us/iaas/Content/General/Concepts/regions.htm y buscar el key de la región en la que uno se encuentra ej: Sao Paulo gru, Chile scl, Ashbur iad
+11. Crear Secret de tipo docker-registry para el namespace
+	Para crear el secret es necesario conocer el identificador del registry (XXX.ocir.io), para ello visitar https://docs.oracle.com/en-us/iaas/Content/General/Concepts/regions.htm y buscar **el key de la región** en la que uno se encuentrá, por ejemplo Sao Paulo gru, Chile scl, Ashbur iad. 
+	**en el caso de Ashburn usar iad, en el caso de Sao Paulo gru** 
+	**TENANCI_XXXXX es el dato almacenado en ~/.oci/namespaceRegistry**
+	**USERNAME_XXXXX es el nombre dle usuario completo, en mi caso oracleidentitycloudservice/felipe.basso@oracle.com**
+	**TOKEN_XXXX es ~/.oci/token**
 	```
-	$ kubectl create secret docker-registry ocirsecret --docker-server=XXX.ocir.io --docker-username='<Tenancy name>/<username>' --docker-password='<user auth token>' -n demo
+	$ kubectl create secret docker-registry ocirsecret --docker-server=XXX.ocir.io --docker-username='TENANCI_XXXXX/USERNAME_XXXXX' --docker-password='TOKEN_XXXX' -n demo
+	```
+	**Ejemplo**
+	```
+	$ kubectl create secret docker-registry ocirsecret --docker-server=iad.ocir.io --docker-username='idgnybveke7a/oracleidentitycloudservice/felipe.basso@oracle.com' --docker-password='tv432_ny!_#1' -n demo
 	```
 
-11. Realizar un cambio en nuestro repositorio y esperar que el deploy se realice de forma automática:
+12. Realizar un cambio en nuestro repositorio y esperar que el deploy se realice de forma automática:
 	Editar la línea 8 del arhivo githubaction-OKE/chart/demo.yaml y cambiar   **repository: iad.ocir.io/id5lady22ken/demo** por XXX.ocir.io/REGISTRY_NAMESPACE/demo y ver que ocurre
 
 May the force be with you!
