@@ -148,7 +148,7 @@ La finalidad de este demo es configurar Github Actions para realizar deploymente
 	```
 	**Ejemplo**
 	```
-	$ kubectl create secret docker-registry ocirsecret --docker-server=iad.ocir.io --docker-username='idgnybveke7a/oracleidentitycloudservice/felipe.basso@oracle.com' --docker-password='tv432_ny!_#1' -n demo
+	$ kubectl create secret docker-registry ocirsecret --docker-server=iad.ocir.io --docker-username='id5lady22ken/oracleidentitycloudservice/felipe.basso@oracle.com' --docker-password='tv432_ny!_#1' -n demo
 	```
 
 12. Realizar un cambio en nuestro repositorio y esperar que el deploy se realice de forma automática:
