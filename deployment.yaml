@@ -1,0 +1,66 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  generation: 1
+  labels:
+    app: hello-python
+  name: hello-python
+  namespace: hello-python
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: hello-python
+  strategy: {}
+  template:
+    metadata:
+      labels:
+       app: hello-python
+    spec:
+      containers:
+      - image: iad.ocir.io/idlhjo6dp3bd/helloworld:latest
+        name: hello-python
+        ports:
+        - containerPort: 8080
+          name: http
+          protocol: TCP
+        readinessProbe:
+          failureThreshold: 3
+          httpGet:
+            path: /
+            port: http
+            scheme: HTTP
+          periodSeconds: 10
+          successThreshold: 1
+          timeoutSeconds: 1
+        resources:
+          limits:
+            cpu: 100m
+            memory: 128Mi
+          requests:
+            cpu: 100m
+            memory: 128Mi
+      imagePullSecrets:
+      - name: ocirsecret
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  creationTimestamp: null
+  labels:
+    app: hello-python
+  name: lb-hello-python
+  namespace: hello-python
+spec:
+  ports:
+  - name: "80"
+    port: 80
+    protocol: TCP
+    targetPort: 80
+  selector:
+    app: hello-python
+  type: LoadBalancer
+status:
+  loadBalancer: {}
