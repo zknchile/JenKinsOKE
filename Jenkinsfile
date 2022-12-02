@@ -22,7 +22,7 @@ pipeline {
         }
         stage('Push Imagen en OCIR') {
         steps {
-          sh "docker login -u "${USER}" -p '${TOKEN}' ${REGION}"
+          sh "docker login -u ${USER} -p ${TOKEN} ${REGION}"
           sh "docker tag localhost/${IMAGE} ${REGISTRY}"
           sh "docker push ${REGISTRY}" 
            }
