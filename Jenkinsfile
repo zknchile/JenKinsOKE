@@ -32,7 +32,7 @@ pipeline {
         stage('Deploy de Aplicacion en OKE') {
 
         steps {
-            sh deploy.sh
+            sh "sh deploy.sh"
            }
          }
     }
