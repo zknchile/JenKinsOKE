@@ -1,5 +1,9 @@
 FROM ubuntu
 
+#Ejecutamos todo con root
+ARG USER_ID=1000
+ARG GROUP_ID=1000
+
 # Instalamos nginx y Actualizamos el OS 
 RUN apt-get -y update && apt-get -y install nginx
 
