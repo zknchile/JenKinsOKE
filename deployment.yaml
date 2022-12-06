@@ -1,38 +1,26 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  generation: 1
+  creationTimestamp: null
   labels:
-    app: hello-python
-  name: hello-python
-  namespace: hello-python
+    app: dp-hello-oke
+  name: dp-hello-oke
+  namespace: hello-oke
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: hello-python
+      app: dp-hello-oke
   strategy: {}
   template:
     metadata:
+      creationTimestamp: null
       labels:
-       app: hello-python
+        app: dp-hello-oke
     spec:
       containers:
-      - image: iad.ocir.io/idlhjo6dp3bd/helloworld:latest
-        name: hello-python
-        ports:
-        - containerPort: 8080
-          name: http
-          protocol: TCP
-        readinessProbe:
-          failureThreshold: 3
-          httpGet:
-            path: /
-            port: http
-            scheme: HTTP
-          periodSeconds: 10
-          successThreshold: 1
-          timeoutSeconds: 1
+      - image: iad.ocir.io/idlhjo6dp3bd/hello_oke:latest
+        name: hello-oke
         resources:
           limits:
             cpu: 100m
@@ -40,8 +28,12 @@ spec:
           requests:
             cpu: 100m
             memory: 128Mi
+        ports:
+        - containerPort: 80
+          protocol: TCP
       imagePullSecrets:
       - name: ocirsecret
+status: {}
 
 ---
 
@@ -50,17 +42,17 @@ kind: Service
 metadata:
   creationTimestamp: null
   labels:
-    app: hello-python
-  name: lb-hello-python
-  namespace: hello-python
+    app: dp-hello-oke
+  name: lb-hello-oke
+  namespace: hello-oke
 spec:
   ports:
-  - name: "80"
+  - name: html
     port: 80
     protocol: TCP
     targetPort: 80
   selector:
-    app: hello-python
+    app: dp-hello-oke
   type: LoadBalancer
 status:
   loadBalancer: {}
