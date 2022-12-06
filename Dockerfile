@@ -1,24 +1,14 @@
-FROM python:3.9-alpine3.14
+FROM ubuntu
 
-#app directory
-WORKDIR /app
-#demo user
-ARG USER_ID=1000
-ARG GROUP_ID=1000
+# Instalamos nginx y Actualizamos el OS 
+RUN apt-get -y update && apt-get -y install nginx
 
-RUN addgroup -g ${GROUP_ID} demo \
- && adduser -D demo -u ${USER_ID} -g demo -G demo -s /bin/sh
+# Copiamos nuevas configuraciones y archivo index
+COPY default /etc/nginx/sites-available/default
+COPY index.html /usr/share/nginx/html/index.html
 
-#copy files
-COPY --chown=demo . /app/
+# Exponemos el pruerto 80 bajo protocolo TCP
+EXPOSE 80/tcp
 
-#install depedencies
-RUN apk add --no-cache --virtual .build-deps gcc libc-dev make \
-    && pip install --no-cache-dir -r requirements.txt \
-    && apk del .build-deps gcc libc-dev make
-
-USER demo
-
-#entrypoint
-CMD ["uvicorn", "main:app", "--proxy-headers", "--host", "0.0.0.0", "--port", "8080"]
-
+#Ejecutamos el servicios nginx
+CMD ["/usr/sbin/nginx", "-g", "daemon off;"]
