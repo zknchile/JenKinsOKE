@@ -8,6 +8,7 @@ pipeline {
         REGISTRY_NAMESPACE = 'idlhjo6dp3bd'
         REGISTRY = 'iad.ocir.io/idlhjo6dp3bd/hello_oke:latest'
         IMAGE = 'hello_oke:latest'
+        NAMESPACE = 'hello-oke'
     }
     
     stages {
