@@ -6,8 +6,8 @@ pipeline {
         USER = 'idlhjo6dp3bd/oracleidentitycloudservice/felipe.basso@oracle.com'
         REGION = 'iad.ocir.io'
         REGISTRY_NAMESPACE = 'idlhjo6dp3bd'
-        REGISTRY = 'iad.ocir.io/idlhjo6dp3bd/helloworld:latest'
-        IMAGE = 'helloworld:latest'
+        REGISTRY = 'iad.ocir.io/idlhjo6dp3bd/hello_oke:latest'
+        IMAGE = 'hello_oke:latest'
     }
     
     stages {
