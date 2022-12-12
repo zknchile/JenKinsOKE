@@ -6,7 +6,7 @@ pipeline {
         OCIUSER = 'idlhjo6dp3bd/oracleidentitycloudservice/felipe.basso@oracle.com'
         REGION = 'iad.ocir.io'
         REGISTRY_NAMESPACE = 'idlhjo6dp3bd'
-        REGISTRY = 'iad.ocir.io/idlhjo6dp3bd/hello_oke:latest'
+        REGISTRY_TAG = 'iad.ocir.io/idlhjo6dp3bd/hello_oke:latest'
         IMAGE = 'hello_oke:latest'
         OCINAMESPACE = 'hello-oke'
     }
@@ -25,8 +25,8 @@ pipeline {
         stage('Push Imagen en OCIR') {
         steps {
           sh "docker login -u ${OCIUSER} -p ${TOKEN} ${REGION}"
-          sh "docker tag localhost/${IMAGE} ${REGISTRY}"
-          sh "docker push ${REGISTRY}" 
+          sh "docker tag localhost/${IMAGE} ${REGISTRY_TAG}"
+          sh "docker push ${REGISTRY_TAG}" 
            }
         }
         
