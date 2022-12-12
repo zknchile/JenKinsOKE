@@ -7,8 +7,10 @@ pipeline {
         REGION = 'iad.ocir.io'
         REGISTRY_NAMESPACE = 'idlhjo6dp3bd'
         REGISTRY_TAG = 'iad.ocir.io/idlhjo6dp3bd/hello_oke:latest'
+        IMAGE_TAG = 'latest'
         IMAGE = 'hello_oke:latest'
         OCINAMESPACE = 'hello-oke'
+        DEP_YAML = 'hello-oke.yaml'
     }
     
     stages {
@@ -36,7 +38,8 @@ pipeline {
             //sh 'sudo runuser -l opc -c "kubectl create namespace ${OCINAMESPACE}"'
             //sh 'sudo runuser -l opc -c "kubectl create secret docker-registry ocirsecret --docker-server=${REGION}/${REGISTRY_NAMESPACE} --docker-username=${OCIUSER} --docker-password="${TOKEN}" -n ${OCINAMESPACE}"'
             //sh 'DIR=$(pwd) && sudo runuser -l opc -c "kubectl apply -f ${DIR}/deployment.yaml"'
-            sh 'bash -x ./deploy.sh'
+            sh 'DIR=$(pwd) && sudo runuser -l opc -c "helm upgrade ${OCINAMESPACE} ${DIR}/${OCINAMESPACE} --install --wait --values ${DIR}/${OCINAMESPACE}/${DEP_YAML} --set image.tag=${IMAGE_TAG} --namespace ${OCINAMESPACE}"'
+            //sh 'bash -x ./deploy.sh'
            }
          }
     }
