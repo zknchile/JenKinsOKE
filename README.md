@@ -163,7 +163,7 @@ Cuando se abra la consola aceptar el certificado click en "Accept" y realizar lo
 	$ sudo yum install python36-oci-cli -y
 
 
-**Una vez que finalice el proceso, crear kubeconfig**
+**Una vez que finalice el proceso de creación de cluster OKE, crear kubeconfig**
 
 Click en Acces Cluster -> Cloud Shell Access -> Launch Cloud Shell 
 ![accessShell](img/accessShell.PNG)
