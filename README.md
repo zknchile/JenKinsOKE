@@ -45,7 +45,40 @@ La finalidad de este demo es configurar Jenkins para realizar deploymente de una
 	Create Cluster -> Quick Create 
 	![quickCrate](img/createOKE.PNG)
 
-2. Una vez que finalice el proceso, crear kubeconfig
+2. El proceso de creación del cluster de OKE tarda aproximadamente 20 minutos. durante este periodo, crear el servidor virtual de Jenkins 
+
+```
+Instalación de paquetes Jenkins
+$ sudo yum upgrade -y
+$ sudo yum install java -y
+$ sudo wget -O /etc/yum.repos.d/jenkins.repo http://pkg.jenkins-ci.org/redhat/jenkins.repo
+$ sudo rpm --import https://jenkins-ci.org/redhat/jenkins-ci.org.key
+$ sudo yum install jenkins -y
+$ sudo systemctl enable --now jenkins
+
+Abrir los puertos de firewall
+$ sudo firewall-cmd --zone=public --permanent --add-port=8080/tcp && sudo firewall-cmd --reload
+
+Instalación de Git
+$ yum install git -y
+
+Instalación de kubectl
+$ curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
+$ sudo install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
+$ sudo cp -p /usr/local/bin/kubectl /usr/bin/
+$ kubectl version --client
+
+Para ejecutar contenedores
+$ sudo echo jenkins:10000:65536 >> /etc/subuid
+$ sudo echo jenkins:10000:65536 >> /etc/subgid
+
+Instalación de oci cli
+$ sudo yum install python36-oci-cli -y
+```
+
+3.
+
+4. Una vez que finalice el proceso, crear kubeconfig
 	Click en 
 	Acces Cluster -> Cloud Shell Access -> Launch Cloud Shell 
 	![accessShell](img/accessShell.PNG)
