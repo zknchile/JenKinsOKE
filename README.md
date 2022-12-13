@@ -74,8 +74,21 @@ Dentro de esta configuración se debe definir
 	Availability domain:		El que esté disponible
 	Image and shape, Image:		Oracle Linux 8
 	Shape:				VM.Standard.E4.Flex
-	Virtual cloud network:		Public Subnet-VNC-OKE
-	
+
+![NameVM](img/NameVM.PNG)
+
+	Virtual cloud network in OKE:	VNC-OKE
+	Subnet in OKE:			Public Subnet-VNC-OKE (regional)
+	Public IPv4 address:		Assign a public IPv4 address
+
+![NetworkVM](img/NetworkVM.PNG)
+
+**IMPORTANTE: SIN ESTE PUNTO NO TENRÁN ACCESO AL SERVIDOR JENKINS POR SSH**
+
+	Add SSH keys:			Generate a key pair for me
+	Hacer click en Save private key y en Save public key
+
+![SshVM](img/SshVM.PNG)
 		
 **Instalación de paquetes Jenkins**
 
