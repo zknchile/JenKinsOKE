@@ -28,8 +28,8 @@ La finalidad de este demo es configurar Jenkins para realizar deploymente de una
 - Despliegue automático 
 
 ### Paso a Paso OKE
-0. Crear Compartment
-	Menu -> Identity & Security -> Compartmente -> New Compartment
+**Crear Compartment
+	Menú -> Identity & Security -> Compartmente -> New Compartment
 	```
 	CAMPO				VALOR
 	==============================================
@@ -37,8 +37,8 @@ La finalidad de este demo es configurar Jenkins para realizar deploymente de una
 	Description 			OKE
 	Parent Compartment 		XXXX (root)
   
-1. Crear cluster OKE, dentro del compartment OKE y **nombrarlo cluster1**
-	Menu -> Developer Services -> Kubernetes Clusters (OKE)
+**Crear cluster OKE, dentro del compartment OKE y **nombrarlo cluster1**
+	Menú -> Developer Services -> Kubernetes Clusters (OKE)
 	**IMPORTATE: validar que todo se cree en compartment OKE**
 	![compartment](img/CompartmentOKE.PNG)
 	
@@ -46,7 +46,16 @@ La finalidad de este demo es configurar Jenkins para realizar deploymente de una
 	![quickCrate](img/createOKE.PNG)
 
 2. El proceso de creación del cluster de OKE tarda aproximadamente 20 minutos. durante este periodo, crear el servidor virtual de Jenkins 
-
+	2.1 Menú > Compute > Instances > Create Instance
+	Dentro de esta configuración se debe definir
+	```
+	Name:				jenkins
+	Create in compartment:		OKE
+	Availability domain:		El que esté disponible
+	Image and shape, Image:		Oracle Linux 8
+	Shape:				VM.Standard.E4.Flex
+	Virtual cloud network:		
+	```
 	```
 	Instalación de paquetes Jenkins
 	$ sudo yum upgrade -y
