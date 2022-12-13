@@ -38,6 +38,19 @@ La finalidad de este demo es configurar Jenkins para realizar deploymente de una
 	Description 			OKE
 	Parent Compartment 		XXXX (root)
 
+**Creación de VCN**
+
+	Menú > Networking > Virtual Cloud Network > Start VCN Wizard > Start VCN Wizard
+	![vnc](img/StartWizardVNC.PNG)
+	Dentro de la configuración definir
+	```
+	VNC Name:			VNC-OKE
+	Compartment:			OKE
+	```
+	Click en Next
+	![nextvnc](img/NextWizardVNC.PNG)
+	Validar Resumen y hacer click en Create
+	![createvnc](img/CreateWizardVNC.PNG)
 
 **Crear cluster OKE, dentro del compartment OKE y nombrarlo cluster1**
 
@@ -48,7 +61,8 @@ La finalidad de este demo es configurar Jenkins para realizar deploymente de una
 	Create Cluster -> Quick Create 
 	![quickCrate](img/createOKE.PNG)
 
-2. El proceso de creación del cluster de OKE tarda aproximadamente 20 minutos. durante este periodo, crear el servidor virtual de Jenkins 
+**El proceso de creación del cluster de OKE tarda aproximadamente 20 minutos. durante este periodo, crear el servidor virtual de Jenkins**
+
 	2.1 Menú > Compute > Instances > Create Instance
 	Dentro de esta configuración se debe definir
 	```
@@ -60,6 +74,7 @@ La finalidad de este demo es configurar Jenkins para realizar deploymente de una
 	Virtual cloud network:		
 	```
 	```
+	
 	Instalación de paquetes Jenkins
 	$ sudo yum upgrade -y
 	$ sudo yum install java -y
