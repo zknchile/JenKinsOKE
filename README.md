@@ -304,6 +304,13 @@ Definir los siguientes parámetros
 	Branch Sources:				
 		Add Source:			GitHub
 		Credentials:			Selecionar las que fueron creadas recientemente
-		Repository HTTPS URL:		Copiar la URL del repositorio Git que fue creado por cada uno
+		Repository HTTPS URL:		Copiar la URL del repositorio Git que fue creado por cada uno, Menu > Repositories > Nombre del repo > Code > Https > Copiar URL, ver imagen URLRepoGit
+		Click en Validate
+	Click en Create
 
+![URLRepoGit](img/URLRepoGit.PNG)
 ![HelloOKETaskJenkins](img/HelloOKETaskJenkins.PNG)
+
+
+
+
