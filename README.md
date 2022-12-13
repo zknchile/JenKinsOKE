@@ -187,7 +187,18 @@ Desde Menú > Networking > Virtual Cloud Networks > VNC-OKE > Security Lists > D
 **Usar la password de admin que viene en ya predefinida**
 
 	$ sudo cat /var/lib/jenkins/secrets/initialAdminPassword
-	
+
+![LogJenkins](img/LogJenkins.PNG)
+
+**Instalar los plugins Sugeridos**
+
+![PlugJenkins](img/PlugJenkins.PNG)
+
+El proceso de instalación se iniciará
+
+![InstallJenkins](img/InstallJenkins.PNG)
+
+![FinishJenkins](img/FinishJenkins.PNG)
 
 **Una vez que finalice el proceso de creación de cluster OKE, crear kubeconfig**
 
