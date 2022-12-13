@@ -198,6 +198,10 @@ El proceso de instalación se iniciará
 
 ![InstallJenkins](img/InstallJenkins.PNG)
 
+Se debe definir un nombre de usuario, contraseña y un correo
+![UserJenkins](img/UserJenkins.PNG)
+
+Finalmente Jenkins está instalado y listo para ser usado
 ![FinishJenkins](img/FinishJenkins.PNG)
 
 **Una vez que finalice el proceso de creación de cluster OKE, crear kubeconfig**
