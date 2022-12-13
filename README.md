@@ -127,9 +127,9 @@ Copiar el comando, similar a **No es el mismo, no copiar este ejemplo**
 **Crear OCI Setup Configurar**
 
 	$ oci setup config
-	```
-	Dentro de esta configuración se debe definir
-	```
+	
+**Dentro de esta configuración se debe definir**
+
 	CAMPO									DONDE ENCONTRAR
 	===================================================================================
 	- Path (...config [/home/felipe_bas/.oci/config]: ) 			Donde quedará la configuración, dejar por default (~/.oci/config)
@@ -148,19 +148,20 @@ Copiar el comando, similar a **No es el mismo, no copiar este ejemplo**
 	console, follow the instructions on the page linked below in the section
 	'How to upload the public key':
 
-4. Crear API Key (permite conectar a kubernetes y realizar el despliegue mediante Helm)
-	Menu -> Identity & Security -> User -> User Details -> API Key -> Add API Key -> Past Public Key -> Add
-	![apikey](img/userAPIKeys.PNG)
-	Pegar la public Key que se creó en paso anterior, para tener esa información ejecutar el siguiente comando y copiar todo el contenido 
-	```
-	$ cat .oci/oci_api_key_public.pem
-	```
-	![apikey](img/addAPIKeys.PNG)
+**Crear API Key (permite conectar a kubernetes y realizar el despliegue mediante Helm)**
 
-4.2 El fingerprint que se crea debe ser el mismo q está en ~/.oci/config **Reemplazar XXX por el dato de cada uno**
-	```
+Menu -> Identity & Security -> User -> User Details -> API Key -> Add API Key -> Past Public Key -> Add
+![apikey](img/userAPIKeys.PNG)
+	
+Pegar la public Key que se creó en paso anterior, para tener esa información ejecutar el siguiente comando y copiar todo el contenido 
+	
+	$ cat .oci/oci_api_key_public.pem
+	
+![apikey](img/addAPIKeys.PNG)
+
+**El fingerprint que se crea debe ser el mismo q está en ~/.oci/config Reemplazar XXX por el dato de cada uno**
+
 	$ fgrep "XXXXXX" ~/.oci/config
-	```
 	
 6. Crear Token (Nos permitirá conectarnos con el OCI Registry)
 	Menu -> Identity & Security -> User -> User Details -> Auth Tokens -> Generate Token
