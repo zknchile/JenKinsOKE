@@ -112,39 +112,41 @@ Dentro de esta configuración se debe definir
 
 
 **Una vez que finalice el proceso, crear kubeconfig**
+
 Click en Acces Cluster -> Cloud Shell Access -> Launch Cloud Shell 
 ![accessShell](img/accessShell.PNG)
 
 Copiar el comando, similar a **No es el mismo, no copiar este ejemplo**
 
-![kubeConfig](img/kubeConfig.PNG)
-    ```
+![kubeConfig](img/kubeConfig.png)
+
     $ oci ce cluster create-kubeconfig --cluster-id <cluster ocid> --file $HOME/.kube/config --region us-ashburn-1 --token-version 2.0.0  --kube-endpoint PUBLIC_ENDPOINT
-    ```
-    ![cloudShell](img/cloudshell.PNG)
     
-3. Crear OCI Setup Configurar
-  $ oci setup config
-    ```
-    Dentro de esta configuración se debe definir
-    ```
-    CAMPO									DONDE ENCONTRAR
-    ===================================================================================
-    - Path (...config [/home/felipe_bas/.oci/config]: ) 			Donde quedará la configuración, dejar por default (~/.oci/config)
-    - User OCID								    **Profile -> oracleidentitycloudservice/XXXXX -> OCID -> Copy
-    - Tenancy OCID								**Profile -> Tenancy:XXXXX -> OCID -> Copy
-    - Region 								      **Seleccionar la región desde las alternativas en base a la que corresponde a cada uno, esquina superior derecha		
-    - Do you want to generate a new API Signing RSA key pair? (If you decline you will be asked to supply the path to an existing key.) [Y/n]: **Y Con esto se creará llabe pública de forma automática**
-    - Enter a directory for your keys to be created [/var/lib/jenkins/.oci]:    **Enter
-    - Enter a name for your key [oci_api_key]:                                  **Enter
-    - Public key written to: /var/lib/jenkins/.oci/oci_api_key_public.pem       **Enter
-    - Enter a passphrase for your private key (empty for no passphrase):        **Enter
-    - Private key written to: /var/lib/jenkins/.oci/oci_api_key.pem             **Enter
-        Fingerprint: XX:XX:XX:XX:XX:XX:XX:XX
-        Config written to /var/lib/jenkins/.oci/config
-        If you haven't already uploaded your API Signing public key through the
-        console, follow the instructions on the page linked below in the section
-      'How to upload the public key':
+![cloudShell](img/cloudshell.PNG)
+    
+**Crear OCI Setup Configurar**
+
+	$ oci setup config
+	```
+	Dentro de esta configuración se debe definir
+	```
+	CAMPO									DONDE ENCONTRAR
+	===================================================================================
+	- Path (...config [/home/felipe_bas/.oci/config]: ) 			Donde quedará la configuración, dejar por default (~/.oci/config)
+	- User OCID								    **Profile -> oracleidentitycloudservice/XXXXX -> OCID -> Copy
+	- Tenancy OCID								**Profile -> Tenancy:XXXXX -> OCID -> Copy
+	- Region 								      **Seleccionar la región desde las alternativas en base a la que corresponde a cada uno, esquina superior derecha		
+	- Do you want to generate a new API Signing RSA key pair? (If you decline you will be asked to supply the path to an existing key.) [Y/n]: **Y Con esto se creará llabe pública de forma automática**
+	- Enter a directory for your keys to be created [/var/lib/jenkins/.oci]:    **Enter
+	- Enter a name for your key [oci_api_key]:                                  **Enter
+	- Public key written to: /var/lib/jenkins/.oci/oci_api_key_public.pem       **Enter
+	- Enter a passphrase for your private key (empty for no passphrase):        **Enter
+	- Private key written to: /var/lib/jenkins/.oci/oci_api_key.pem             **Enter
+	Fingerprint: XX:XX:XX:XX:XX:XX:XX:XX
+	Config written to /var/lib/jenkins/.oci/config
+	If you haven't already uploaded your API Signing public key through the
+	console, follow the instructions on the page linked below in the section
+	'How to upload the public key':
 
 4. Crear API Key (permite conectar a kubernetes y realizar el despliegue mediante Helm)
 	Menu -> Identity & Security -> User -> User Details -> API Key -> Add API Key -> Past Public Key -> Add
