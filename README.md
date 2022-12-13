@@ -77,7 +77,7 @@ Dentro de esta configuración se debe definir
 	Virtual cloud network:		Public Subnet-VNC-OKE
 	
 		
-Instalación de paquetes Jenkins
+**Instalación de paquetes Jenkins**
 
 	$ sudo yum upgrade -y
 	$ sudo yum install java -y
@@ -86,36 +86,38 @@ Instalación de paquetes Jenkins
 	$ sudo yum install jenkins -y
 	$ sudo systemctl enable --now jenkins
 
-Abrir los puertos de firewall
+**Abrir los puertos de firewall**
 
 	$ sudo firewall-cmd --zone=public --permanent --add-port=8080/tcp && sudo firewall-cmd --reload
 
-Instalación de Git
+**Instalación de Git**
 
 	$ yum install git -y
 
-Instalación de kubectl
+**Instalación de kubectl**
+
 	$ curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
 	$ sudo install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
 	$ sudo cp -p /usr/local/bin/kubectl /usr/bin/
 	$ kubectl version --client
 
-	Para ejecutar contenedores
+**Para ejecutar contenedores**
+
 	$ sudo echo jenkins:10000:65536 >> /etc/subuid
 	$ sudo echo jenkins:10000:65536 >> /etc/subgid
 
-	Instalación de oci cli
+**Instalación de oci cli**
+
 	$ sudo yum install python36-oci-cli -y
-	```
 
-3.
 
-4. Una vez que finalice el proceso, crear kubeconfig
-	Click en 
-	Acces Cluster -> Cloud Shell Access -> Launch Cloud Shell 
-	![accessShell](img/accessShell.PNG)
-	Copiar el comando, similar a **No es el mismo, no copiar este ejemplo**
-	![kubeConfig](img/kubeConfig.PNG)
+**Una vez que finalice el proceso, crear kubeconfig**
+Click en Acces Cluster -> Cloud Shell Access -> Launch Cloud Shell 
+![accessShell](img/accessShell.PNG)
+
+Copiar el comando, similar a **No es el mismo, no copiar este ejemplo**
+
+![kubeConfig](img/kubeConfig.PNG)
     ```
     $ oci ce cluster create-kubeconfig --cluster-id <cluster ocid> --file $HOME/.kube/config --region us-ashburn-1 --token-version 2.0.0  --kube-endpoint PUBLIC_ENDPOINT
     ```
