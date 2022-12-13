@@ -179,6 +179,7 @@ Menu -> Developer Services -> Container Registry -> Create Repository
 	
 Guardar el nombre del namespace del registry para su futuro uso
 ![registryNamespace](img/registryNamespace.PNG)
+
 	$ echo "XXXXX" > ~/.oci/namespaceRegistry
 	
 **Crear nuevo repositorio en GitHub, nombrarlo ghithubaction-oke y dejarlo de forma pública**
