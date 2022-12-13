@@ -30,7 +30,7 @@ La finalidad de este demo es configurar Jenkins para realizar deploymente de una
 ### Paso a Paso OKE
 **Crear Compartment**
 
-	Menú -> Identity & Security -> Compartmente -> New Compartment
+Menú -> Identity & Security -> Compartmente -> New Compartment
 	```
 	CAMPO				VALOR
 	==============================================
@@ -40,8 +40,8 @@ La finalidad de este demo es configurar Jenkins para realizar deploymente de una
 	```
 **Creación de VCN**
 
-	Menú > Networking > Virtual Cloud Network > Start VCN Wizard > Start VCN Wizard
-	![vnc](img/StartWizardVNC.PNG)
+Menú > Networking > Virtual Cloud Network > Start VCN Wizard > Start VCN Wizard
+![vnc](img/StartWizardVNC.PNG)
 	
 	Dentro de la configuración definir
 	```
