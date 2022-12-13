@@ -57,28 +57,28 @@ Validar Resumen y hacer click en Create
 
 **Crear cluster OKE, dentro del compartment OKE y nombrarlo cluster1**
 
-	Menú -> Developer Services -> Kubernetes Clusters (OKE)
-	**IMPORTATE: validar que todo se cree en compartment OKE**
-	![compartment](img/CompartmentOKE.PNG)
+Menú -> Developer Services -> Kubernetes Clusters (OKE)
+**IMPORTATE: validar que todo se cree en compartment OKE**
+![compartment](img/CompartmentOKE.PNG)
 	
-	Create Cluster -> Quick Create 
-	![quickCrate](img/createOKE.PNG)
+Create Cluster -> Quick Create 
+![quickCrate](img/createOKE.PNG)
 
 **El proceso de creación del cluster de OKE tarda aproximadamente 20 minutos. durante este periodo, crear el servidor virtual de Jenkins**
 
-	2.1 Menú > Compute > Instances > Create Instance
-	Dentro de esta configuración se debe definir
-	```
+Menú > Compute > Instances > Create Instance
+Dentro de esta configuración se debe definir
+	
 	Name:				jenkins
 	Create in compartment:		OKE
 	Availability domain:		El que esté disponible
 	Image and shape, Image:		Oracle Linux 8
 	Shape:				VM.Standard.E4.Flex
-	Virtual cloud network:		
-	```
-	```
+	Virtual cloud network:		Public Subnet-VNC-OKE
 	
-	Instalación de paquetes Jenkins
+		
+Instalación de paquetes Jenkins
+
 	$ sudo yum upgrade -y
 	$ sudo yum install java -y
 	$ sudo wget -O /etc/yum.repos.d/jenkins.repo http://pkg.jenkins-ci.org/redhat/jenkins.repo
@@ -86,13 +86,15 @@ Validar Resumen y hacer click en Create
 	$ sudo yum install jenkins -y
 	$ sudo systemctl enable --now jenkins
 
-	Abrir los puertos de firewall
+Abrir los puertos de firewall
+
 	$ sudo firewall-cmd --zone=public --permanent --add-port=8080/tcp && sudo firewall-cmd --reload
 
-	Instalación de Git
+Instalación de Git
+
 	$ yum install git -y
 
-	Instalación de kubectl
+Instalación de kubectl
 	$ curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
 	$ sudo install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
 	$ sudo cp -p /usr/local/bin/kubectl /usr/bin/
