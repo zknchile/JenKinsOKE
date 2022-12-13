@@ -32,13 +32,11 @@ La finalidad de este demo es configurar Jenkins para realizar deploymente de una
 
 Menú -> Identity & Security -> Compartmente -> New Compartment
 
-	```
 	CAMPO				VALOR
 	==============================================
 	Name		 		OKE
 	Description 			OKE
 	Parent Compartment 		XXXX (root)
-	```
 
 **Creación de VCN**
 
@@ -46,15 +44,16 @@ Menú > Networking > Virtual Cloud Network > Start VCN Wizard > Start VCN Wizard
 ![vnc](img/StartWizardVNC.PNG)
 
 
-	Dentro de la configuración definir
-	```
+Dentro de la configuración definir
+	
 	VNC Name:			VNC-OKE
 	Compartment:			OKE
-	```
-	Click en Next
-	![nextvnc](img/NextWizardVNC.PNG)
-	Validar Resumen y hacer click en Create
-	![createvnc](img/CreateWizardVNC.PNG)
+	
+Click en Next
+![nextvnc](img/NextWizardVNC.PNG)
+
+Validar Resumen y hacer click en Create
+![createvnc](img/CreateWizardVNC.PNG)
 
 **Crear cluster OKE, dentro del compartment OKE y nombrarlo cluster1**
 
