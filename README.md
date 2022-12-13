@@ -144,7 +144,7 @@ Cuando se abra la consola aceptar el certificado click en "Accept" y realizar lo
 
 **Instalación de Git**
 
-	$ yum install git -y
+	$ sudo yum install git -y
 
 **Instalación de kubectl**
 
