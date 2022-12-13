@@ -175,7 +175,7 @@ Se puede guardar dentro de un archivo llamado token, **Reemplazar XXXX por el to
 **Crear registry en OCI y nombraro hello_oke Validar que se cree en compartment OKE**
 
 Menu -> Developer Services -> Container Registry -> Create Repository
-	![registry](img/registry.PNG)
+	![registry](img/registryHello.PNG)
 	
 Guardar el nombre del namespace del registry para su futuro uso
 	
