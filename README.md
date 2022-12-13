@@ -278,10 +278,12 @@ Hacer click en Global credentials (unrestricted)
 ![SysManCredJenkins](img/SysManCredJenkins.PNG)
 
 Y click en "+ Add Credential" y selecionar la opción "Username with password"
+
 	Username:			Usuario de GitHub
 	Password:			Password de GitHub
 	ID:				GitHub-OKE
 	Description:			GitHub-OKE
+
 Click en "Create"
 
 ![UserPassJenkins](img/UserPassJenkins.PNG)
