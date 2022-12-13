@@ -244,63 +244,6 @@ La creación de esta API Key generará un finguerprint, el cual debe coincidir c
 
 	$ fgrep "XX:XX:XX:XX:XX:XX:XX:XX" /home/opc/.oci/config
 	
-				
-Copiar el comando, similar a **No es el mismo, no copiar este ejemplo**
-
-![kubeConfig](img/kubeConfig.png)
-
-    $ oci ce cluster create-kubeconfig --cluster-id <cluster ocid> --file $HOME/.kube/config --region us-ashburn-1 --token-version 2.0.0  --kube-endpoint PUBLIC_ENDPOINT
-    
-![cloudShell](img/cloudshell.PNG)
-    
-**Crear OCI Setup Configurar**
-
-	$ oci setup config
-	
-**Dentro de esta configuración se debe definir**
-
-	CAMPO									DONDE ENCONTRAR
-	===================================================================================
-	- Path (...config [/home/felipe_bas/.oci/config]: ) 			Donde quedará la configuración, dejar por default (~/.oci/config)
-	- User OCID								    **Profile -> oracleidentitycloudservice/XXXXX -> OCID -> Copy
-	- Tenancy OCID								**Profile -> Tenancy:XXXXX -> OCID -> Copy
-	- Region 								      **Seleccionar la región desde las alternativas en base a la que corresponde a cada uno, esquina superior derecha		
-	- Do you want to generate a new API Signing RSA key pair? (If you decline you will be asked to supply the path to an existing key.) [Y/n]: **Y Con esto se creará llabe pública de forma automática**
-	- Enter a directory for your keys to be created [/var/lib/jenkins/.oci]:    **Enter
-	- Enter a name for your key [oci_api_key]:                                  **Enter
-	- Public key written to: /var/lib/jenkins/.oci/oci_api_key_public.pem       **Enter
-	- Enter a passphrase for your private key (empty for no passphrase):        **Enter
-	- Private key written to: /var/lib/jenkins/.oci/oci_api_key.pem             **Enter
-	Fingerprint: XX:XX:XX:XX:XX:XX:XX:XX
-	Config written to /var/lib/jenkins/.oci/config
-	If you haven't already uploaded your API Signing public key through the
-	console, follow the instructions on the page linked below in the section
-	'How to upload the public key':
-
-**Crear API Key (permite conectar a kubernetes y realizar el despliegue mediante Helm)**
-
-Menu -> Identity & Security -> User -> User Details -> API Key -> Add API Key -> Past Public Key -> Add
-![apikey](img/userAPIKeys.PNG)
-	
-Pegar la public Key que se creó en paso anterior, para tener esa información ejecutar el siguiente comando y copiar todo el contenido 
-	
-	$ cat .oci/oci_api_key_public.pem
-	
-![apikey](img/addAPIKeys.PNG)
-
-**El fingerprint que se crea debe ser el mismo q está en ~/.oci/config Reemplazar XXX por el dato de cada uno**
-
-	$ fgrep "XXXXXX" ~/.oci/config
-	
-**Crear Token (Nos permitirá conectarnos con el OCI Registry)**
-
-	Menu -> Identity & Security -> User -> User Details -> Auth Tokens -> Generate Token
-	![token](img/auth.PNG)
-	
-Se puede guardar dentro de un archivo llamado token, **Reemplazar XXXX por el token de cada uno**
-
-	$ echo "XXXXXX" > .oci/token
-
 **Crear registry en OCI y nombraro hello_oke Validar que se cree en compartment OKE**
 
 Menu -> Developer Services -> Container Registry -> Create Repository
