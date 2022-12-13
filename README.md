@@ -28,7 +28,7 @@ La finalidad de este demo es configurar Jenkins para realizar deploymente de una
 - Despliegue automático 
 
 ### Paso a Paso OKE
-Crear Compartment
+**Crear Compartment
 
 	Menú -> Identity & Security -> Compartmente -> New Compartment
 	```
@@ -39,7 +39,7 @@ Crear Compartment
 	Parent Compartment 		XXXX (root)
 
 
-Crear cluster OKE, dentro del compartment OKE y nombrarlo cluster1
+**Crear cluster OKE, dentro del compartment OKE y nombrarlo cluster1
 
 	Menú -> Developer Services -> Kubernetes Clusters (OKE)
 	**IMPORTATE: validar que todo se cree en compartment OKE**
