@@ -42,6 +42,7 @@ La finalidad de este demo es configurar Jenkins para realizar deploymente de una
 
 	Menú > Networking > Virtual Cloud Network > Start VCN Wizard > Start VCN Wizard
 	![vnc](img/StartWizardVNC.PNG)
+	
 	Dentro de la configuración definir
 	```
 	VNC Name:			VNC-OKE
