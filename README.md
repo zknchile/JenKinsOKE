@@ -31,6 +31,7 @@ La finalidad de este demo es configurar Jenkins para realizar deploymente de una
 **Crear Compartment**
 
 Menú -> Identity & Security -> Compartmente -> New Compartment
+
 	```
 	CAMPO				VALOR
 	==============================================
@@ -38,11 +39,13 @@ Menú -> Identity & Security -> Compartmente -> New Compartment
 	Description 			OKE
 	Parent Compartment 		XXXX (root)
 	```
+
 **Creación de VCN**
 
 Menú > Networking > Virtual Cloud Network > Start VCN Wizard > Start VCN Wizard
 ![vnc](img/StartWizardVNC.PNG)
-	
+
+
 	Dentro de la configuración definir
 	```
 	VNC Name:			VNC-OKE
