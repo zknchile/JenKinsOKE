@@ -286,3 +286,24 @@ Click en "Create"
 
 ![UserPassJenkins](img/UserPassJenkins.PNG)
 
+**Crear Tarea en Jenkins**
+
+Menú > + Nueva Tarea 
+![NuevaTareaJenkins](img/NuevaTareaJenkins.PNG)
+
+	Nombrar como hello-oke
+	Selecionar la opción Multibranch Pipeline
+	
+	Click en OK
+
+![HelloOKEJenkins](img/HelloOKEJenkins.PNG)
+
+Definir los siguientes parámetros
+	Display Name:				Hello-OKE
+	Description:				Hello-OKE
+	Branch Sources:				
+		Add Source:			GitHub
+		Credentials:			Selecionar las que fueron creadas recientemente
+		Repository HTTPS URL:		Copiar la URL del repositorio Git que fue creado por cada uno
+
+![HelloOKETaskJenkins](img/HelloOKETaskJenkins.PNG)
