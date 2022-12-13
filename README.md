@@ -126,6 +126,9 @@ Finalmente realizar la conexión haciendo click en "Open"
 
 ![OpenPuttyCon](img/OpenPuttyCon.PNG)
 
+Cuando se abra la consola aceptar el certificado click en "Accept" y realizar login con el usuario "opc"
+![LoginPuttyCon](img/LoginPuttyCon.PNG)
+
 **Instalación de paquetes Jenkins**
 
 	$ sudo yum upgrade -y
