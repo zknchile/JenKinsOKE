@@ -37,7 +37,7 @@ La finalidad de este demo es configurar Jenkins para realizar deploymente de una
 	Name		 		OKE
 	Description 			OKE
 	Parent Compartment 		XXXX (root)
-
+	```
 **Creación de VCN**
 
 	Menú > Networking > Virtual Cloud Network > Start VCN Wizard > Start VCN Wizard
