@@ -163,20 +163,24 @@ Pegar la public Key que se creó en paso anterior, para tener esa información e
 
 	$ fgrep "XXXXXX" ~/.oci/config
 	
-6. Crear Token (Nos permitirá conectarnos con el OCI Registry)
+**Crear Token (Nos permitirá conectarnos con el OCI Registry)**
+
 	Menu -> Identity & Security -> User -> User Details -> Auth Tokens -> Generate Token
 	![token](img/auth.PNG)
-	Se puede guardar dentro de un archivo llamado token, **Reemplazar XXXX por el token de cada uno**
-	```
+	
+Se puede guardar dentro de un archivo llamado token, **Reemplazar XXXX por el token de cada uno**
+
 	$ echo "XXXXXX" > .oci/token
-	```
-7. Crear registry en OCI y nombraro hello_oke **Validar que se cree en compartment OKE**
-	Menu -> Developer Services -> Container Registry -> Create Repository
+
+**Crear registry en OCI y nombraro hello_oke Validar que se cree en compartment OKE**
+
+Menu -> Developer Services -> Container Registry -> Create Repository
 	![registry](img/registry.PNG)
-	Guardar el nombre del namespace del registry para su futuro uso
-	```
+	
+Guardar el nombre del namespace del registry para su futuro uso
+	
 	$ echo "XXXXX" > ~/.oci/namespaceRegistry
-	```
+	
 8. Crear nuevo repositorio en GitHub, nombrarlo ghithubaction-oke y dejarlo de forma pública
 	Profile -> Your Repositories -> New -> Repository Name -> Create Repository
 	
