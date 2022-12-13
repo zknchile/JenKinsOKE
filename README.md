@@ -299,6 +299,7 @@ Menú > + Nueva Tarea
 ![HelloOKEJenkins](img/HelloOKEJenkins.PNG)
 
 Definir los siguientes parámetros
+
 	Display Name:				Hello-OKE
 	Description:				Hello-OKE
 	Branch Sources:				
