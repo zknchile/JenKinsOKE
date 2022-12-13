@@ -153,10 +153,20 @@ Cuando se abra la consola aceptar el certificado click en "Accept" y realizar lo
 	$ sudo cp -p /usr/local/bin/kubectl /usr/bin/
 	$ kubectl version --client
 
-**Para ejecutar contenedores**
+**Para ejecutar contenedores, se debe ejecutar con root no con sudo**
 
-	$ sudo echo jenkins:10000:65536 >> /etc/subuid
-	$ sudo echo jenkins:10000:65536 >> /etc/subgid
+	$ sudo su -
+	# echo jenkins:10000:65536 >> /etc/subuid
+	# echo jenkins:10000:65536 >> /etc/subgid
+	# exit
+	logout
+	$
+
+**Instalar Helm**
+
+	$ wget https://get.helm.sh/helm-v3.10.2-linux-amd64.tar.gz
+	$ tar -xzvf helm-v3.10.2-linux-amd64.tar.gz
+	$ sudo mv linux-amd64/helm /usr/bin/helm
 
 **Instalación de oci cli**
 
