@@ -6,6 +6,7 @@ La finalidad de este demo es configurar Jenkins para realizar deploymente de una
 ### Requerimientos:
 
 - Cuenta de Oracle Cloud Infrastructure(test gratuito https://www.oracle.com/cloud/free/)
+- Putty ssh, o cualquier cliente ssh que se utilice (Validar versión de sistema operativo y descargar https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html)
 - Cuenta de Github (https://github.com/signup?ref_cta=Sign+up&ref_loc=header+logged+out&ref_page=%2F&source=header-home)
 
 ### Aclaraciones:
@@ -86,10 +87,32 @@ Dentro de esta configuración se debe definir
 **IMPORTANTE: SIN ESTE PUNTO NO TENRÁN ACCESO AL SERVIDOR JENKINS POR SSH**
 
 	Add SSH keys:			Generate a key pair for me
-	Hacer click en Save private key y en Save public key
+	Hacer click en Save private key y en Save public key y guardarlas en un directorio conocido, se utilizarán después
 
 ![SshVM](img/SshVM.PNG)
+
+	Finalmente, click en Create
 		
+Una vez que el servidor Jenkins esté creado, copiar la ip pública
+![IpVM](img/IpVM.PNG)
+
+**Configurar la llave privada para ser compatible con putty**
+
+	Abrir el programa "puttyGen" > Conversions > Import Key
+
+![OpenPuttyGen](img/OpenPuttyGen.PNG)
+
+	Cargar la llave privada y click en "Save private key" sin passhrase, click en "Yes"
+
+![SavePuttyGen](img/SavePuttyGen.PNG)
+
+	Almacenarla con el nombre "private.ppk", finalmente cerrar puttyGen
+
+![PrivatePuttyGen](img/PrivatePuttyGen.PNG)
+
+Abrir y configurar Putty para que use la llave ssh creada y descargada desde OCI
+
+
 **Instalación de paquetes Jenkins**
 
 	$ sudo yum upgrade -y
