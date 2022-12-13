@@ -244,7 +244,7 @@ La creación de esta API Key generará un finguerprint, el cual debe coincidir c
 
 	$ fgrep "XX:XX:XX:XX:XX:XX:XX:XX" /home/opc/.oci/config
 	
-**Crear registry en OCI y nombraro hello_oke Validar que se cree en compartment OKE**
+**Crear registry en OCI y nombrarlo hello_oke Validar que se cree en compartment OKE**
 
 Menu -> Developer Services -> Container Registry -> Create Repository
 	![registry](img/registryHello.PNG)
@@ -261,5 +261,28 @@ Guardar el nombre del namespace del registry para su futuro uso
 **Una vez creado el nuevo repositorio, ir a la opción "…or import code from another repository" e importar el código de la URL**
 	
 	https://github.com/whiplash0104/hello-kubernetes.git
-	
+
+
+**Integrar Jenkins con gitHub**
+
+Ir al menú izquierdo y selecionar la opción Administrar Jenkins
+![AdminJenkins](img/AdminJenkins.PNG)
+
+Luego ir a Manage Credentials
+![ManCredJenkins](img/ManCredJenkins.PNG)
+
+Hacer click en System
+![GlobalManCredJenkins](img/GlobalManCredJenkins.PNG)
+
+Hacer click en Global credentials (unrestricted)
+![SysManCredJenkins](img/SysManCredJenkins.PNG)
+
+Y click en "+ Add Credential" y selecionar la opción "Username with password"
+	Username:			Usuario de GitHub
+	Password:			Password de GitHub
+	ID:				GitHub-OKE
+	Description:			GitHub-OKE
+Click en "Create"
+
+![UserPassJenkins](img/UserPassJenkins.PNG)
 
