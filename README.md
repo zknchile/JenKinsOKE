@@ -110,8 +110,21 @@ Una vez que el servidor Jenkins esté creado, copiar la ip pública
 
 ![PrivatePuttyGen](img/PrivatePuttyGen.PNG)
 
-Abrir y configurar Putty para que use la llave ssh creada y descargada desde OCI
 
+**Abrir y configurar Putty para que use la llave ssh creada y descargada desde OCI**
+
+	Abrir putty y en el campo "Host Name (or IP address)" pegar la ip pública del servidor Jenkins creado
+	
+![NewPuttyCon](img/NewPuttyCon.PNG)
+
+Para realizar la conexión, se debe cargar el certificado privado ssh recientemente creado 
+	En el menú izquierdo ir a Connection > + SSH > Auth > Browse...
+
+![PrivatePuttyCon](img/PrivatePuttyCon.PNG)
+
+Finalmente realizar la conexión haciendo click en "Open"
+
+![OpenPuttyCon](img/OpenPuttyCon.PNG)
 
 **Instalación de paquetes Jenkins**
 
