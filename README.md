@@ -172,6 +172,22 @@ Cuando se abra la consola aceptar el certificado click en "Accept" y realizar lo
 
 	$ sudo yum install python36-oci-cli -y
 
+**Abrir puerto 8080 desde ecurity List**
+
+Desde Menú > Networking > Virtual Cloud Networks > VNC-OKE > Security Lists > Default Security List for VNC-OKE > Add Ingress Rule y Modificar solo
+
+	Source CIDR:			0.0.0.0/0
+	Destination Port Range:		8080
+	Description:			Jenkins Service
+
+**Una vez abierto el puerto 8080 entrar desde el navegador a Jenkins, usando la ip pública y el puerto 808**
+	
+	Ejemplo: http://129.213.108.202:8080/
+	
+**Usar la password de admin que viene en ya predefinida**
+
+	$ sudo cat /var/lib/jenkins/secrets/initialAdminPassword
+	
 
 **Una vez que finalice el proceso de creación de cluster OKE, crear kubeconfig**
 
