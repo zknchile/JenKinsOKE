@@ -178,13 +178,15 @@ Menu -> Developer Services -> Container Registry -> Create Repository
 	![registry](img/registryHello.PNG)
 	
 Guardar el nombre del namespace del registry para su futuro uso
-	
+![registryNamespace](img/registryNamespace.PNG)
 	$ echo "XXXXX" > ~/.oci/namespaceRegistry
 	
-8. Crear nuevo repositorio en GitHub, nombrarlo ghithubaction-oke y dejarlo de forma pública
+**Crear nuevo repositorio en GitHub, nombrarlo ghithubaction-oke y dejarlo de forma pública**
+
 	Profile -> Your Repositories -> New -> Repository Name -> Create Repository
 	
-8.1 Una vez creado el nuevo repositorio, ir a la opción "…or import code from another repository" e importar el código de la URL 
-	```
+**Una vez creado el nuevo repositorio, ir a la opción "…or import code from another repository" e importar el código de la URL**
+	
 	https://github.com/whiplash0104/hello-kubernetes.git
-	```
+	
+
