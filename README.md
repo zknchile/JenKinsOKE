@@ -204,11 +204,47 @@ Se debe definir un nombre de usuario, contraseña y un correo
 Finalmente Jenkins está instalado y listo para ser usado
 ![FinishJenkins](img/FinishJenkins.PNG)
 
-**Una vez que finalice el proceso de creación de cluster OKE, crear kubeconfig**
+**Una vez que finalice el proceso de creación de cluster OKE, conectar el nuevo servidor Jenkins a OKE**
 
-Click en Acces Cluster -> Cloud Shell Access -> Launch Cloud Shell 
-![accessShell](img/accessShell.PNG)
+Menú > Developer Services > Kubernetes Clusters (OKE) > Click en el Cluster OKE > Access Cluster > Cloud Shell Access > Local Access 
+![LocalOKECon](img/LocalOKECon.PNG)
 
+Seguir los pasos indicados en la conexión en el servidor Jenkins
+
+	$ oci -v
+	$ mkdir -p $HOME/.kube
+
+Copiar el comando en el punto 2 (To access the kubeconfig for your cluster via the VCN-Native public endpoint, copy the following command) y ejecutar en el servidor Jenkins
+
+Completar con ls sigueinte información
+
+	Do you want to create a new config file? [Y/n]:							**ENTER**
+	Do you want to create your config file by logging in through a browser? [Y/n]:			**ENTER**
+	Enter a location for your config [/home/opc/.oci/config]:					**ENTER**
+	Enter a user OCID: 										**Profile -> oracleidentitycloudservice/XXXXX -> OCID -> Copy**
+	Enter a tenancy OCID:										****Profile -> Tenancy:XXXXX -> OCID -> Copy**
+	Enter a region by index or name(e.g.....							**Esta aparece en la esquina superior derecha ej: US East (Ashburn), en este caso la región es Ashburn, se utiliza us-ashburn-1
+	Do you want to generate a new API Signing RSA key pair? ... [Y/n]:				**ENTER**
+	Enter a directory for your keys to be created [/home/opc/.oci]:					**ENTER**
+	Enter a name for your key [oci_api_key]:							**ENTER**
+	Enter a passphrase for your private key (empty for no passphrase):				**ENTER**
+
+![JenkinsOKECon](img/JenkinsOKECon.PNG)
+
+Una vez realizada la configuración crear un API Key
+	
+	Menú > Identity > Users > Tu usuario > Api Key > Add API Key
+	Selecionar la opción "Paste Public Key" y pegar la llave pública creada en el paso anterior
+	
+	$  cat /home/opc/.oci/oci_api_key_public.pem
+
+![APIKey](img/APIKey.PNG)
+
+La creación de esta API Key generará un finguerprint, el cual debe coincidir con el que se creó en el paso anterior, para validar copiar el fingerprint creado y buscarlo en el archivo de configuración creado
+
+	$ fgrep "XX:XX:XX:XX:XX:XX:XX:XX" /home/opc/.oci/config
+	
+				
 Copiar el comando, similar a **No es el mismo, no copiar este ejemplo**
 
 ![kubeConfig](img/kubeConfig.png)
