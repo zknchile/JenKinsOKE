@@ -293,11 +293,11 @@ Dentro del repositorio clonado modificar el archivo Jenkinsfile
 	
 El resto de los parámetros dejarlos de la misma forma
 
-	REGISTRY_TAG = ${REGION}.ocir.io/${REGISTRY_NAMESPACE}/hello_oke:latest
+        IMAGE = 'hello_oke'
         IMAGE_TAG = 'latest'
-        IMAGE = 'hello_oke:latest'
+        REGISTRY_TAG = "${REGION}.ocir.io/${REGISTRY_NAMESPACE}/${IMAGE}:${IMAGE_TAG}"
         OCINAMESPACE = 'hello-oke'
-        DEP_YAML = 'hello-oke.yaml'
+        DEP_YAML = 'hello-oke.yaml''
 
 **Integrar Jenkins con gitHub**
 
