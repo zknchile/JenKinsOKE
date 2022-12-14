@@ -37,7 +37,7 @@ pipeline {
         steps {
             sh 'sudo runuser -l opc -c "helm create hello-oke"'
             sh 'DIR=$(pwd) && sudo runuser -l opc -c "helm upgrade ${OCINAMESPACE} ${OCINAMESPACE}/ --install --wait --values ${DIR}/${OCINAMESPACE}/${DEP_YAML} --set image.tag=${IMAGE_TAG} --namespace ${OCINAMESPACE}"'
-            //sh 'bash -x ./deploy.sh'
+            sh 'sudo runuser -l opc -c "rm -vfr hello-oke"'
            }
          }
     }
