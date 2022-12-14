@@ -323,10 +323,13 @@ Definir los siguientes parámetros
 ![URLRepoGit](img/URLRepoGit.PNG)
 ![HelloOKETaskJenkins](img/HelloOKETaskJenkins.PNG)
 
-Cuando se cree la tarea esta automáticamente realiza el scan del código. Si la integración se realizó de forma correcta, el escaneo del repositorio finalizará de forma correcta hacer click en Panel de Control > Hello-OKE > master (selecionado en rojo)
+Cuando se cree la tarea esta automáticamente realiza el scan del código. Si la integración se realizó de forma correcta, el escaneo del repositorio finalizará de forma correcta hacer click en Panel de Control > Hello-OKE (selecionado en rojo)
 ![ScanRepoJenkins](img/ScanRepo2Jenkins.PNG)
 
-Si todo salió bien, se verá un pipeline completo en verde
+Si todo salió bien, se verá un la rama master en verde 
+![MasterOkJenkins](img/MasterOkJenkins.PNG)
+
+Al hacer click en la rama master se podrá ver pipeline en verde
 
 ![OkPipelineJenkins](img/OkPipelineJenkins.PNG)
 
