@@ -12,7 +12,7 @@ La finalidad de este demo es configurar Jenkins para realizar deploymente de una
 ### Aclaraciones:
 - XXXXXX Corresponde a varibale que debe ser modificada en base a la que cada uno posee}
 - En honor al tiempo:
-	- no se integrará Jenkins con ninguna plataforma de inspeción de código como por ejemplo SonarQube o CodeScan
+	- No se integrará Jenkins con ninguna plataforma de inspeción de código como por ejemplo SonarQube o CodeScan
 	- No se realizará integración derecta de Jenkins con Kubernetes 
 	- No se utilizará ningún compilador como por ejemplo Gradle o Maven
 	- No se creará directamente el repositorio de Helm
