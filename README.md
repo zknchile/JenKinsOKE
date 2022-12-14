@@ -250,10 +250,12 @@ La creación de esta API Key generará un finguerprint, el cual debe coincidir c
 	$ fgrep "XX:XX:XX:XX:XX:XX:XX:XX" /home/opc/.oci/config
 
 Crear Token (Nos permitirá conectarnos con el OCI Registry)
-	
 	Menu -> Identity & Security -> User -> User Details -> Auth Tokens -> Generate Token
-	![token](img/auth.PNG)
-	Se puede guardar dentro de un archivo llamado token, **Reemplazar XXXX por el token de cada uno**
+
+![token](img/auth.PNG)
+
+Se puede guardar dentro de un archivo llamado token, **Reemplazar XXXX por el token de cada uno**
+
 	$ echo "XXXXXX" > .oci/token
 
 **Crear namespace hello-oke**
