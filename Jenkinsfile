@@ -2,11 +2,11 @@ pipeline {
     agent any
     
     environment {
-        TOKEN = 'XeO2cZ:}yWjYK458ghMH'
-        OCIUSER = 'idlhjo6dp3bd/oracleidentitycloudservice/felipe.basso@oracle.com'
-        REGION = 'iad.ocir.io'
-        REGISTRY_NAMESPACE = 'idlhjo6dp3bd'
-        REGISTRY_TAG = 'iad.ocir.io/idlhjo6dp3bd/hello_oke:latest'
+        TOKEN = 'XXXXXXXXXXXXXXXXXXXX'
+        OCIUSER = 'idlhjo6dp3bd/oracleidentitycloudservice/XXXXXXXXXXXXXXXXXXXX'
+        REGION = 'XXX.ocir.io'
+        REGISTRY_NAMESPACE = 'XXXXXXXXXXXXXXXXXXXX'
+        REGISTRY_TAG = 'XXX.ocir.io/XXXXXXXXXXXXXXXXXXXX/hello_oke:latest'
         IMAGE_TAG = 'latest'
         IMAGE = 'hello_oke:latest'
         OCINAMESPACE = 'hello-oke'
