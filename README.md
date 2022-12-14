@@ -16,6 +16,7 @@ La finalidad de este demo es configurar Jenkins para realizar deploymente de una
 	- No se realizará integración derecta de Jenkins con Kubernetes 
 	- No se utilizará ningún compilador como por ejemplo Gradle o Maven
 	- No se creará directamente el repositorio de Helm
+	- No se configurará webhook entre GitHub y Jenkins
 - Si nos alcanza el tiempo podremos trabajar con GitHub Action
 
 ### ¿Qué vamos a hacer?
