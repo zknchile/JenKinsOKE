@@ -248,7 +248,11 @@ Una vez realizada la configuración crear un API Key
 La creación de esta API Key generará un finguerprint, el cual debe coincidir con el que se creó en el paso anterior, para validar copiar el fingerprint creado y buscarlo en el archivo de configuración creado
 
 	$ fgrep "XX:XX:XX:XX:XX:XX:XX:XX" /home/opc/.oci/config
-	
+
+**Crear namespace hello-oke**
+
+	$ kubectl create namespace hello-oke
+
 **Crear registry en OCI y nombrarlo hello_oke Validar que se cree en compartment OKE**
 
 Menu -> Developer Services -> Container Registry -> Create Repository
@@ -319,10 +323,24 @@ Definir los siguientes parámetros
 ![URLRepoGit](img/URLRepoGit.PNG)
 ![HelloOKETaskJenkins](img/HelloOKETaskJenkins.PNG)
 
-Cuando se cree la tarea esta automáticamente realiza el scan del código. Si la integración se realizó de forma correcta, el escaneo del repositorio finalizará de forma correcta
+Cuando se cree la tarea esta automáticamente realiza el scan del código. Si la integración se realizó de forma correcta, el escaneo del repositorio finalizará de forma correcta hacer click en Panel de Control > Hello-OKE > master (selecionado en rojo)
 ![ScanRepoJenkins](img/ScanRepo2Jenkins.PNG)
 
+Si todo salió bien, se verá un pipeline completo en verde
 
+![OkPipelineJenkins](img/OkPipelineJenkins.PNG)
 
+Para validar, solo hayq eu conectarnos a la IP del service Load Balancer creado en el namespace hello-oke
+Hay dos formas de saber la ip
+
+	$ kubectl get service -n hello-oke
+
+1. Lo que mostará como ejemplo
+
+	NAME        TYPE           CLUSTER-IP      EXTERNAL-IP      PORT(S)        AGE
+	hello-oke   LoadBalancer   10.96.146.146   132.226.43.126   80:31581/TCP   5m38s
+
+2. Desde OCI Menú > Networking > Load Balancer
+![OCILoadBalancer](img/OCILoadBalancer.PNG)
 
 
