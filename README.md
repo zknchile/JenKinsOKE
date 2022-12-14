@@ -145,6 +145,10 @@ Cuando se abra la consola aceptar el certificado click en "Accept" y realizar lo
 **Instalación de Git**
 
 	$ sudo yum install git -y
+	
+**Instalación de Docker
+
+	$ sudo yum install docker -y
 
 **Instalación de kubectl**
 
@@ -158,6 +162,7 @@ Cuando se abra la consola aceptar el certificado click en "Accept" y realizar lo
 	$ sudo su -
 	# echo jenkins:10000:65536 >> /etc/subuid
 	# echo jenkins:10000:65536 >> /etc/subgid
+	# echo "jenkins  ALL=(ALL)       NOPASSWD:ALL" >> /etc/sudoers
 	# exit
 	logout
 	$
@@ -313,6 +318,10 @@ Definir los siguientes parámetros
 
 ![URLRepoGit](img/URLRepoGit.PNG)
 ![HelloOKETaskJenkins](img/HelloOKETaskJenkins.PNG)
+
+Cuando se cree la tarea esta automáticamente realiza el scan del código. Si la integración se realizó de forma correcta, el escaneo del repositorio finalizará de forma correcta
+![ScanRepoJenkins](img/ScanRepo2Jenkins.PNG)
+
 
 
 
