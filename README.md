@@ -238,7 +238,7 @@ Completar con ls sigueinte información
 
 Una vez realizada la configuración crear un API Key
 	
-	Menú > Identity > Users > Tu usuario > Api Key > Add API Key
+	Menú > Identity & Security > Users > Tu usuario > Api Key > Add API Key
 	Selecionar la opción "Paste Public Key" y pegar la llave pública creada en el paso anterior
 	
 	$  cat /home/opc/.oci/oci_api_key_public.pem
@@ -250,13 +250,15 @@ La creación de esta API Key generará un finguerprint, el cual debe coincidir c
 	$ fgrep "XX:XX:XX:XX:XX:XX:XX:XX" /home/opc/.oci/config
 
 Crear Token (Nos permitirá conectarnos con el OCI Registry)
-	Menu -> Identity & Security -> User -> User Details -> Auth Tokens -> Generate Token
+
+	Menu -> Identity & Security -> User -> Tu Usuario -> Auth Tokens -> Generate Token
+	Description: jenkins-oke
 
 ![token](img/auth.PNG)
 
 Se puede guardar dentro de un archivo llamado token, **Reemplazar XXXX por el token de cada uno**
 
-	$ echo "XXXXXX" > .oci/token
+	$ echo "XXXXXX" > $HOME/.oci/token
 
 **Crear namespace hello-oke**
 
@@ -270,7 +272,7 @@ Menu -> Developer Services -> Container Registry -> Create Repository
 Guardar el nombre del namespace del registry para su futuro uso
 ![registryNamespace](img/registryNamespace.PNG)
 
-	$ echo "XXXXX" > ~/.oci/namespaceRegistry
+	$ echo "XXXXX" > $HOME/.oci/namespaceRegistry
 	
 **Crear nuevo repositorio en GitHub, nombrarlo ghithubaction-oke y dejarlo de forma pública**
 
@@ -280,6 +282,22 @@ Guardar el nombre del namespace del registry para su futuro uso
 	
 	https://github.com/whiplash0104/hello-kubernetes.git
 
+
+**Modificar Jenkinsfile**
+
+Dentro del repositorio clonado modificar el archivo Jenkinsfile
+	TOKEN = 'XXXXXXXXXXXXXXXXXXXX'								$ cat $HOME/.oci/token
+	REGISTRY_NAMESPACE = 'XXXXXXXXXXXXXXXXXXXX'						$ cat $HOME/.oci/namespaceRegistry
+	OCIUSER = ${REGISTRY_NAMESPACE}/oracleidentitycloudservice/XXXXXXXXXXXXXXXXXXXX		Usuario: Menú > Identity & Security > Users > Tu Usuario Copiar el nombre completo del usuario, en mi caso es oracleidentitycloudservice/felipeXXXXX
+        REGION = XXX								Este identificador se obtiene desde https://docs.oracle.com/en-us/iaas/Content/General/Concepts/regions.htm ej: para chile es scl, por ende la región es scl.ocir.io, para Sao Paulo es gru, por ende la región es gru.ocir.io
+	
+El resto de los parámetros dejarlos de la misma forma
+
+	REGISTRY_TAG = ${REGION}.ocir.io/${REGISTRY_NAMESPACE}/hello_oke:latest
+        IMAGE_TAG = 'latest'
+        IMAGE = 'hello_oke:latest'
+        OCINAMESPACE = 'hello-oke'
+        DEP_YAML = 'hello-oke.yaml'
 
 **Integrar Jenkins con gitHub**
 
