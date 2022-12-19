@@ -306,7 +306,6 @@ https://user-images.githubusercontent.com/14284928/208528723-5777bf61-ac09-43ab-
 **Crear Secret en namespace hello-oke**
 
 	$ kubectl create secret docker-registry ocirsecret --docker-server=XXX_REGION.ocir.io --docker-username='XXX_REGISTRYNAMESPACE/oracleidentitycloudservice/XXX_USER' --docker-password='XXX_TOKEN' -n hello-oke
-secret/ocirsecret created
 
 Donde
 	XXX_REGION: 			es la reción donde vive el cluster de OKE
