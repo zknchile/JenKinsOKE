@@ -413,4 +413,5 @@ Hay dos formas de saber la ip
 2. Desde OCI Menú > Networking > Load Balancer
 ![OCILoadBalancer](img/OCILoadBalancer.PNG)
 
+https://user-images.githubusercontent.com/14284928/208536782-02a7db11-49b9-4e4b-82f8-eaaf2b1c06a1.mov
 
