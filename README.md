@@ -128,16 +128,13 @@ https://user-images.githubusercontent.com/14284928/208518198-221e5e35-53ec-4580-
 ![NewPuttyCon](img/NewPuttyCon.PNG)
 
 Para realizar la conexión, se debe cargar el certificado privado ssh recientemente creado 
+
 	En el menú izquierdo ir a Connection > + SSH > Auth > Browse...
+	Realizar la conexión haciendo click en "Open"
+	Cuando se abra la consola aceptar el certificado click en "Accept" y realizar login con el usuario "opc"
 
-![PrivatePuttyCon](img/PrivatePuttyCon.PNG)
+https://user-images.githubusercontent.com/14284928/208522277-9ab3163f-86ba-4510-a60a-194680999c52.mov
 
-Finalmente realizar la conexión haciendo click en "Open"
-
-![OpenPuttyCon](img/OpenPuttyCon.PNG)
-
-Cuando se abra la consola aceptar el certificado click en "Accept" y realizar login con el usuario "opc"
-![LoginPuttyCon](img/LoginPuttyCon.PNG)
 
 **Instalación de paquetes Jenkins**
 
@@ -186,6 +183,9 @@ Cuando se abra la consola aceptar el certificado click en "Accept" y realizar lo
 **Instalación de oci cli**
 
 	$ sudo yum install python36-oci-cli -y
+	
+https://user-images.githubusercontent.com/14284928/208525750-cf609166-4288-49dc-94d6-f147035c3d7c.mov
+
 
 **Abrir puerto 8080 desde ecurity List**
 
@@ -194,6 +194,9 @@ Desde Menú > Networking > Virtual Cloud Networks > VNC-OKE > Security Lists > D
 	Source CIDR:			0.0.0.0/0
 	Destination Port Range:		8080
 	Description:			Jenkins Service
+
+https://user-images.githubusercontent.com/14284928/208526110-6ebf2524-bd84-4089-a189-fcdd63987c57.mov
+
 
 **Una vez abierto el puerto 8080 entrar desde el navegador a Jenkins, usando la ip pública y el puerto 808**
 	
@@ -218,6 +221,9 @@ Se debe definir un nombre de usuario, contraseña y un correo
 
 Finalmente Jenkins está instalado y listo para ser usado
 ![FinishJenkins](img/FinishJenkins.PNG)
+
+https://user-images.githubusercontent.com/14284928/208526660-45f26de8-e523-4ac5-ac07-5b86bd4e567c.mov
+
 
 **Una vez que finalice el proceso de creación de cluster OKE, conectar el nuevo servidor Jenkins a OKE**
 
