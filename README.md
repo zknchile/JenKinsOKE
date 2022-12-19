@@ -87,21 +87,16 @@ https://user-images.githubusercontent.com/14284928/208512993-109e0539-c0f1-403b-
 Menú > Compute > Instances > Create Instance
 Dentro de esta configuración se debe definir
 	
+	CAMPO				VALOR
+	================================================================
 	Name:				jenkins
 	Create in compartment:		OKE
 	Availability domain:		El que esté disponible
 	Image and shape, Image:		Oracle Linux 8
 	Shape:				VM.Standard.E4.Flex
-
-
-https://user-images.githubusercontent.com/14284928/208513336-b0eec982-7aef-4968-ae4f-97e71bbb0b75.mov
-
 	Virtual cloud network in OKE:	VNC-OKE
 	Subnet in OKE:			Public Subnet-VNC-OKE (regional)
 	Public IPv4 address:		Assign a public IPv4 address
-
-
-https://user-images.githubusercontent.com/14284928/208513555-1c1c5fe7-bc85-4fc9-99c5-ee36d2694dbe.mov
 
 
 **IMPORTANTE: SIN ESTE PUNTO NO TENRÁN ACCESO AL SERVIDOR JENKINS POR SSH**
@@ -109,11 +104,11 @@ https://user-images.githubusercontent.com/14284928/208513555-1c1c5fe7-bc85-4fc9-
 	Add SSH keys:			Generate a key pair for me
 	Hacer click en Save private key y en Save public key y guardarlas en un directorio conocido, se utilizarán después
 
-https://user-images.githubusercontent.com/14284928/208513972-c178c85f-f47b-4716-808d-9ba46a9a6433.mov
-
-
 	Finalmente, click en Create
-		
+	
+https://user-images.githubusercontent.com/14284928/208521618-8da386d4-160f-4f28-a9eb-02949ae9765d.mov
+
+	
 Una vez que el servidor Jenkins esté creado, copiar la ip pública
 ![IpVM](img/IpVM.PNG)
 
