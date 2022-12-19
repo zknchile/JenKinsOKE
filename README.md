@@ -54,30 +54,35 @@ https://user-images.githubusercontent.com/14284928/208510305-49f90928-422e-4b57-
 **Creación de VCN**
 
 Menú > Networking > Virtual Cloud Network > Start VCN Wizard > Start VCN Wizard
-![vnc](img/StartWizardVNC.PNG)
-
 
 Dentro de la configuración definir
-	
+	CAMPO				VALOR
+	=============================================
 	VNC Name:			VNC-OKE
 	Compartment:			OKE
 	
 Click en Next
-![nextvnc](img/NextWizardVNC.PNG)
 
 Validar Resumen y hacer click en Create
-![createvnc](img/CreateWizardVNC.PNG)
+
+https://user-images.githubusercontent.com/14284928/208511358-295cd06b-c703-45db-a5cb-1e8461632284.mov
+
 
 **Crear cluster OKE, dentro del compartment OKE y nombrarlo cluster1**
 
 Menú -> Developer Services -> Kubernetes Clusters (OKE)
-**IMPORTATE: validar que todo se cree en compartment OKE**
-![compartment](img/CompartmentOKE.PNG)
+**IMPORTATE: validar que todo se cree en compartment OKE, en el video de ejemplo se usa el compartment felipe.basso**
 	
 Create Cluster -> Quick Create 
-![quickCrate](img/createOKE.PNG)
+
+	CAMPO				VALOR
+	=============================================
+	Name:				OKE
 
 **El proceso de creación del cluster de OKE tarda aproximadamente 20 minutos. durante este periodo, crear el servidor virtual de Jenkins**
+
+https://user-images.githubusercontent.com/14284928/208512993-109e0539-c0f1-403b-8ba3-8d69eb7375fe.mov
+
 
 Menú > Compute > Instances > Create Instance
 Dentro de esta configuración se debe definir
@@ -88,20 +93,24 @@ Dentro de esta configuración se debe definir
 	Image and shape, Image:		Oracle Linux 8
 	Shape:				VM.Standard.E4.Flex
 
-![NameVM](img/NameVM.PNG)
+
+https://user-images.githubusercontent.com/14284928/208513336-b0eec982-7aef-4968-ae4f-97e71bbb0b75.mov
 
 	Virtual cloud network in OKE:	VNC-OKE
 	Subnet in OKE:			Public Subnet-VNC-OKE (regional)
 	Public IPv4 address:		Assign a public IPv4 address
 
-![NetworkVM](img/NetworkVM.PNG)
+
+https://user-images.githubusercontent.com/14284928/208513555-1c1c5fe7-bc85-4fc9-99c5-ee36d2694dbe.mov
+
 
 **IMPORTANTE: SIN ESTE PUNTO NO TENRÁN ACCESO AL SERVIDOR JENKINS POR SSH**
 
 	Add SSH keys:			Generate a key pair for me
 	Hacer click en Save private key y en Save public key y guardarlas en un directorio conocido, se utilizarán después
 
-![SshVM](img/SshVM.PNG)
+https://user-images.githubusercontent.com/14284928/208513972-c178c85f-f47b-4716-808d-9ba46a9a6433.mov
+
 
 	Finalmente, click en Create
 		
@@ -111,17 +120,10 @@ Una vez que el servidor Jenkins esté creado, copiar la ip pública
 **Configurar la llave privada para ser compatible con putty**
 
 	Abrir el programa "puttyGen" > Conversions > Import Key
-
-![OpenPuttyGen](img/OpenPuttyGen.PNG)
-
 	Cargar la llave privada y click en "Save private key" sin passhrase, click en "Yes"
-
-![SavePuttyGen](img/SavePuttyGen.PNG)
-
 	Almacenarla con el nombre "private.ppk", finalmente cerrar puttyGen
 
-![PrivatePuttyGen](img/PrivatePuttyGen.PNG)
-
+https://user-images.githubusercontent.com/14284928/208518198-221e5e35-53ec-4580-9d1c-569e105ef5dc.mov
 
 **Abrir y configurar Putty para que use la llave ssh creada y descargada desde OCI**
 
