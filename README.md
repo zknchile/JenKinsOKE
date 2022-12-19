@@ -45,8 +45,13 @@ Menú -> Identity & Security -> Compartmente -> New Compartment
 	Description 			OKE
 	Parent Compartment 		XXXX (root)
 
-**Creación de VCN**
 
+
+
+https://user-images.githubusercontent.com/14284928/208510305-49f90928-422e-4b57-b05a-b3349ee4a5e2.mov
+
+
+**Creación de VCN**
 
 Menú > Networking > Virtual Cloud Network > Start VCN Wizard > Start VCN Wizard
 ![vnc](img/StartWizardVNC.PNG)
