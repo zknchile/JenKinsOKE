@@ -56,6 +56,7 @@ https://user-images.githubusercontent.com/14284928/208510305-49f90928-422e-4b57-
 Menú > Networking > Virtual Cloud Network > Start VCN Wizard > Start VCN Wizard
 
 Dentro de la configuración definir
+
 	CAMPO				VALOR
 	=============================================
 	VNC Name:			VNC-OKE
