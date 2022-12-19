@@ -265,6 +265,12 @@ La creación de esta API Key generará un finguerprint, el cual debe coincidir c
 
 	$ fgrep "XX:XX:XX:XX:XX:XX:XX:XX" /home/opc/.oci/config
 
+Volver a Menú > Developer Services > Kubernetes Clusters (OKE) > Click en el Cluster OKE > Access Cluster > Cloud Shell Access > Local Access 
+
+Y copiar el comando del punto 2 (To access the kubeconfig for your cluster via the VCN-Native public endpoint, copy the following command) y ejecutar en el servidor Jenkins, este creará la confinguración de Kubernetes
+![LocalOKECon](img/LocalOKECon.PNG)
+
+
 Crear Token (Nos permitirá conectarnos con el OCI Registry)
 
 	Menu -> Identity & Security -> User -> Tu Usuario -> Auth Tokens -> Generate Token
@@ -283,20 +289,31 @@ Se puede guardar dentro de un archivo llamado token, **Reemplazar XXXX por el to
 **Crear registry en OCI y nombrarlo hello_oke Validar que se cree en compartment OKE**
 
 Menu -> Developer Services -> Container Registry -> Create Repository
-	![registry](img/registryHello.PNG)
-	
+
+	CAMPO			VALOR
+	====================================
+	Repository Name:	hello_oke
+
+https://user-images.githubusercontent.com/14284928/208528707-5a04d6b5-134d-4c17-b626-8878e1267a1f.mov
+
+
 Guardar el nombre del namespace del registry para su futuro uso
-![registryNamespace](img/registryNamespace.PNG)
 
 	$ echo "XXXXX" > $HOME/.oci/namespaceRegistry
-	
+
+https://user-images.githubusercontent.com/14284928/208528723-5777bf61-ac09-43ab-9e3b-40319528a9da.mov
+
+
 **Crear nuevo repositorio en GitHub, nombrarlo ghithubaction-oke y dejarlo de forma pública**
 
 	Profile -> Your Repositories -> New -> Repository Name -> Create Repository
 	
 **Una vez creado el nuevo repositorio, ir a la opción "…or import code from another repository" e importar el código de la URL**
 	
-	https://github.com/whiplash0104/hello-kubernetes.git
+	https://github.com/whiplash0104/jenkins-OKE.git
+
+https://user-images.githubusercontent.com/14284928/208529078-34df87b7-ca30-43f4-b004-943fbc8f272a.mov
+
 
 
 **Modificar Jenkinsfile**
@@ -317,54 +334,42 @@ El resto de los parámetros dejarlos de la misma forma
 
 **Integrar Jenkins con gitHub**
 
-Ir al menú izquierdo y selecionar la opción Administrar Jenkins
-![AdminJenkins](img/AdminJenkins.PNG)
+	Ir al menú izquierdo y selecionar la opción Administrar Jenkins
+	Luego ir a Manage Credentials
+	Hacer click en System
+	Hacer click en Global credentials (unrestricted)
+	Y click en "+ Add Credential" y selecionar la opción "Username with password"
 
-Luego ir a Manage Credentials
-![ManCredJenkins](img/ManCredJenkins.PNG)
+		Username:			Usuario de GitHub
+		Password:			Password de GitHub
+		ID:				GitHub-OKE
+		Description:			GitHub-OKE
+	Click en "Create"
 
-Hacer click en System
-![GlobalManCredJenkins](img/GlobalManCredJenkins.PNG)
+https://user-images.githubusercontent.com/14284928/208529487-9c860a13-6fdd-43ea-aac0-93b9f162b876.mov
 
-Hacer click en Global credentials (unrestricted)
-![SysManCredJenkins](img/SysManCredJenkins.PNG)
 
-Y click en "+ Add Credential" y selecionar la opción "Username with password"
-
-	Username:			Usuario de GitHub
-	Password:			Password de GitHub
-	ID:				GitHub-OKE
-	Description:			GitHub-OKE
-
-Click en "Create"
-
-![UserPassJenkins](img/UserPassJenkins.PNG)
 
 **Crear Tarea en Jenkins**
 
 Menú > + Nueva Tarea 
-![NuevaTareaJenkins](img/NuevaTareaJenkins.PNG)
-
 	Nombrar como hello-oke
 	Selecionar la opción Multibranch Pipeline
-	
 	Click en OK
 
-![HelloOKEJenkins](img/HelloOKEJenkins.PNG)
+	Definir los siguientes parámetros
 
-Definir los siguientes parámetros
+		Display Name:				Hello-OKE
+		Description:				Hello-OKE
+		Branch Sources:				
+			Add Source:			GitHub
+			Credentials:			Selecionar las que fueron creadas recientemente
+			Repository HTTPS URL:		Copiar la URL del repositorio Git que fue creado por cada uno, Menu > Repositories > Nombre del repo > Code > Https > Copiar URL, ver imagen URLRepoGit
+			Click en Validate
+		Click en Create
 
-	Display Name:				Hello-OKE
-	Description:				Hello-OKE
-	Branch Sources:				
-		Add Source:			GitHub
-		Credentials:			Selecionar las que fueron creadas recientemente
-		Repository HTTPS URL:		Copiar la URL del repositorio Git que fue creado por cada uno, Menu > Repositories > Nombre del repo > Code > Https > Copiar URL, ver imagen URLRepoGit
-		Click en Validate
-	Click en Create
+https://user-images.githubusercontent.com/14284928/208529805-c8491571-72b6-4ae7-97b3-9751baadfbfb.mov
 
-![URLRepoGit](img/URLRepoGit.PNG)
-![HelloOKETaskJenkins](img/HelloOKETaskJenkins.PNG)
 
 Cuando se cree la tarea esta automáticamente realiza el scan del código. Si la integración se realizó de forma correcta, el escaneo del repositorio finalizará de forma correcta hacer click en Panel de Control > Hello-OKE (selecionado en rojo)
 ![ScanRepoJenkins](img/ScanRepo2Jenkins.PNG)
