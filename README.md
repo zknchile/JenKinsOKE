@@ -228,7 +228,7 @@ https://user-images.githubusercontent.com/14284928/208526660-45f26de8-e523-4ac5-
 **Una vez que finalice el proceso de creación de cluster OKE, conectar el nuevo servidor Jenkins a OKE**
 
 Menú > Developer Services > Kubernetes Clusters (OKE) > Click en el Cluster OKE > Access Cluster > Cloud Shell Access > Local Access 
-![LocalOKECon](img/LocalOKECon.PNG)
+![LocalOKECon](img/LocalOKECon2.PNG)
 
 Seguir los pasos indicados en la conexión en el servidor Jenkins
 
@@ -250,7 +250,7 @@ Completar con ls sigueinte información
 	Enter a name for your key [oci_api_key]:							**ENTER**
 	Enter a passphrase for your private key (empty for no passphrase):				**ENTER**
 
-![JenkinsOKECon](img/JenkinsOKECon.PNG)
+![JenkinsOKECon](img/JenkinsOKECon2.PNG)
 
 Una vez realizada la configuración crear un API Key
 	
@@ -268,7 +268,7 @@ La creación de esta API Key generará un finguerprint, el cual debe coincidir c
 Volver a Menú > Developer Services > Kubernetes Clusters (OKE) > Click en el Cluster OKE > Access Cluster > Cloud Shell Access > Local Access 
 
 Y copiar el comando del punto 2 (To access the kubeconfig for your cluster via the VCN-Native public endpoint, copy the following command) y ejecutar en el servidor Jenkins, este creará la confinguración de Kubernetes
-![LocalOKECon](img/LocalOKECon.PNG)
+![LocalOKECon](img/LocalOKECon2.PNG)
 
 
 Crear Token (Nos permitirá conectarnos con el OCI Registry)
