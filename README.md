@@ -47,6 +47,7 @@ Menú -> Identity & Security -> Compartmente -> New Compartment
 
 **Creación de VCN**
 
+
 Menú > Networking > Virtual Cloud Network > Start VCN Wizard > Start VCN Wizard
 ![vnc](img/StartWizardVNC.PNG)
 
