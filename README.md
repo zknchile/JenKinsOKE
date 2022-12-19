@@ -285,7 +285,7 @@ Se puede guardar dentro de un archivo llamado token, **Reemplazar XXXX por el to
 **Crear namespace hello-oke**
 
 	$ kubectl create namespace hello-oke
-
+	
 **Crear registry en OCI y nombrarlo hello_oke Validar que se cree en compartment OKE**
 
 Menu -> Developer Services -> Container Registry -> Create Repository
@@ -303,6 +303,16 @@ Guardar el nombre del namespace del registry para su futuro uso
 
 https://user-images.githubusercontent.com/14284928/208528723-5777bf61-ac09-43ab-9e3b-40319528a9da.mov
 
+**Crear Secret en namespace hello-oke**
+
+	$ kubectl create secret docker-registry ocirsecret --docker-server=XXX_REGION.ocir.io --docker-username='XXX_REGISTRYNAMESPACE/oracleidentitycloudservice/XXX_USER' --docker-password='XXX_TOKEN' -n hello-oke
+secret/ocirsecret created
+
+Donde
+	XXX_REGION: 			es la reción donde vive el cluster de OKE
+	XXX_REGISTRYNAMESPACE:		Es el namespace del registry creado en el paso anterior, cat $HOME/.oci/namespaceRegistry
+	XXX_USER:			Usuario con el que nos conectamos
+	XXX_TOKEN:			Token creado y almacenado en $HOME/.oci/token
 
 **Crear nuevo repositorio en GitHub, nombrarlo ghithubaction-oke y dejarlo de forma pública**
 
@@ -315,6 +325,15 @@ https://user-images.githubusercontent.com/14284928/208528723-5777bf61-ac09-43ab-
 https://user-images.githubusercontent.com/14284928/208529078-34df87b7-ca30-43f4-b004-943fbc8f272a.mov
 
 
+**Modificar en GGitHub archivo XXX_REPOSITORIO/hello-oke/hello-oke.yaml, cambiar XXX_REPOSITORIO por el nombre del repositorio creado**
+Cambiar línea 8  
+
+	8  repository: XXX_REGION.ocir.io/XXX_REGISTRYNAMESPACE/hello_oke
+	
+	Donde:
+		XXX_REGION es la región donde vive el cluster
+		XXX_REGISTRYNAMESPACE es el namespace del registry creado   
+			cat $HOME/.oci/namespaceRegistry
 
 **Modificar Jenkinsfile**
 
