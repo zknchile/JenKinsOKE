@@ -4,7 +4,7 @@ pipeline {
     environment {
         TOKEN = 'l<N)6<CM2lnIuV:})RX;'
         REGISTRY_NAMESPACE = 'axtlpnkugqgp'
-        OCIUSER = "${REGISTRY_NAMESPACE}/oracleidentitycloudservice/XXXXXXXXXXXXXX"
+        OCIUSER = "${REGISTRY_NAMESPACE}/oracleidentitycloudservice/carlos.ruz@tisal.cl"
         REGION = 'sa-santiago-1'
         IMAGE = 'hello_oke'
         IMAGE_TAG = 'latest'
