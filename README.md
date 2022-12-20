@@ -156,6 +156,7 @@ https://user-images.githubusercontent.com/14284928/208522277-9ab3163f-86ba-4510-
 **Instalación de Docker
 
 	$ sudo yum install docker -y
+	$ sudo systemctl enable --now podman
 
 **Instalación de kubectl**
 
